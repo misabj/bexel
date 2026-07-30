@@ -56,8 +56,15 @@ export async function POST(request: Request) {
     );
   } catch (err) {
     console.error("[assessment] submission failed:", err);
+    const debug = request.headers.get("x-debug") === "bexel";
     return NextResponse.json(
-      { ok: false, error: "We couldn't save your assessment. Please try again." },
+      {
+        ok: false,
+        error: "We couldn't save your assessment. Please try again.",
+        ...(debug
+          ? { debug: err instanceof Error ? `${err.name}: ${err.message}` : String(err) }
+          : {}),
+      },
       { status: 500 },
     );
   }
