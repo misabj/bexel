@@ -1,0 +1,171 @@
+// BEXEL Growth Platform — Prisma schema
+// Datasource: MySQL. Run `npm run prisma:generate` after any change.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────── Enums ───────────────────────────
+
+enum CompanySize {
+  SIZE_1_10     @map("1-10")
+  SIZE_11_50    @map("11-50")
+  SIZE_51_200   @map("51-200")
+  SIZE_201_500  @map("201-500")
+  SIZE_500_PLUS @map("500+")
+}
+
+enum LeadTemperature {
+  COLD
+  WARM
+  HOT
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  DEMO_SCHEDULED
+  TRIAL_STARTED
+  QUALIFIED
+  WON
+  LOST
+}
+
+enum ProjectType {
+  RESIDENTIAL
+  COMMERCIAL
+  INFRASTRUCTURE
+  INDUSTRIAL
+  HEALTHCARE
+  EDUCATION
+  OTHER
+}
+
+enum BimMaturity {
+  NONE
+  BASIC_3D
+  COORDINATED
+  PLANNING_4D
+  COST_5D
+  INTEGRATED
+}
+
+enum Currency {
+  EUR
+  USD
+  GBP
+  AED
+  SAR
+}
+
+enum ActivityType {
+  LEAD_CREATED
+  STATUS_CHANGED
+  NOTE_ADDED
+  EMAIL_SENT
+  DEMO_SCHEDULED
+  FOLLOW_UP
+}
+
+// ─────────────────────────── Models ──────────────────────────
+
+model Lead {
+  id              String          @id @default(cuid())
+  firstName       String
+  lastName        String
+  email           String
+  company         String
+  jobTitle        String
+  phone           String?
+  country         String
+  companySize     CompanySize
+  leadScore       Int             @default(0)
+  leadTemperature LeadTemperature @default(COLD)
+  status          LeadStatus      @default(NEW)
+  source          String          @default("roi_calculator")
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  assessment ProjectAssessment?
+  roiResult  RoiResult?
+  activities LeadActivity[]
+
+  @@index([email])
+  @@index([leadTemperature])
+  @@index([status])
+  @@index([country])
+  @@index([createdAt])
+}
+
+model ProjectAssessment {
+  id                     String      @id @default(cuid())
+  leadId                 String      @unique
+  lead                   Lead        @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  projectName            String?
+  projectType            ProjectType
+  projectValue           Float
+  currency               Currency
+  durationMonths         Int
+  teamSize               Int
+  activeProjects         Int
+  bimMaturity            BimMaturity
+  reportingHours         Float
+  informationSearchHours Float
+  weeklyDelayCost        Float
+  expectedDelayWeeks     Float
+  annualChangeRequests   Int
+  averageChangeRequestCost Float
+  duplicatedWorkPercentage Float
+  selectedChallenges     Json
+  createdAt              DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+}
+
+model RoiResult {
+  id                  String   @id @default(cuid())
+  leadId              String   @unique
+  lead                Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  // All monetary values are normalised to EUR for cross-lead comparison.
+  timeSavings         Float
+  reportingSavings    Float
+  delaySavings        Float
+  reworkSavings       Float
+  totalSavings        Float
+  estimatedInvestment Float
+  netBenefit          Float
+  roiPercentage       Float
+  paybackMonths       Float
+  calculationVersion  String   @default("1.0.0")
+  createdAt           DateTime @default(now())
+}
+
+model LeadActivity {
+  id          String       @id @default(cuid())
+  leadId      String
+  lead        Lead         @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  type        ActivityType
+  title       String
+  description String?      @db.Text
+  metadata    Json?
+  createdAt   DateTime     @default(now())
+
+  @@index([leadId])
+  @@index([createdAt])
+}
+
+model CalculatorSettings {
+  id                          String   @id @default("default")
+  hourlyEmployeeCost          Float    @default(45)
+  reportingReductionRate      Float    @default(0.35)
+  searchReductionRate         Float    @default(0.30)
+  delayReductionRate          Float    @default(0.15)
+  changeReductionRate         Float    @default(0.10)
+  duplicatedWorkReductionRate Float    @default(0.20)
+  defaultSoftwareCost         Float    @default(12000)
+  updatedAt                   DateTime @updatedAt
+}
