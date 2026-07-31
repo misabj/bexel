@@ -39,7 +39,10 @@ export function ConfirmDialog({
   if (!open || typeof document === "undefined") return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4">
+    <div
+      className="fixed inset-0 z-[120] flex items-center justify-center p-4"
+      onClick={(e) => e.stopPropagation()}
+    >
       <div
         className="absolute inset-0 bg-brand-950/50 backdrop-blur-sm"
         onClick={loading ? undefined : onCancel}
