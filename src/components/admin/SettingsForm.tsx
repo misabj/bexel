@@ -6,11 +6,14 @@ import { Loader2, Save } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Field, Input } from "@/components/ui/form";
 import { useToast } from "@/components/ui/Toast";
+import { useT } from "@/i18n/provider";
 import { settingsSchema, type SettingsSchema } from "@/lib/validation/schemas";
 import type { RoiSettings } from "@/types";
 
 export function SettingsForm({ initial }: { initial: RoiSettings }) {
   const { toast } = useToast();
+  const t = useT();
+  const s = t.admin.settings;
   const {
     register,
     handleSubmit,
@@ -28,37 +31,37 @@ export function SettingsForm({ initial }: { initial: RoiSettings }) {
     });
     const data = (await res.json()) as { ok: boolean; error?: string };
     if (!res.ok || !data.ok) {
-      toast(data.error ?? "Could not save settings.", "error");
+      toast(data.error ?? s.saveError, "error");
       return;
     }
-    toast("Calculator settings saved.", "success");
+    toast(s.saved, "success");
   });
 
   const err = (k: keyof SettingsSchema) => errors[k]?.message as string | undefined;
 
   return (
     <form onSubmit={onSubmit} className="card space-y-6">
-      <Field label="Hourly employee cost (EUR)" htmlFor="hourlyEmployeeCost" error={err("hourlyEmployeeCost")}>
+      <Field label={s.hourlyEmployeeCost} htmlFor="hourlyEmployeeCost" error={err("hourlyEmployeeCost")}>
         <Input id="hourlyEmployeeCost" type="number" step="1" {...register("hourlyEmployeeCost")} />
       </Field>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Reporting reduction rate (0–1)" htmlFor="reportingReductionRate" error={err("reportingReductionRate")}>
+        <Field label={s.reportingReductionRate} htmlFor="reportingReductionRate" error={err("reportingReductionRate")}>
           <Input id="reportingReductionRate" type="number" step="0.01" {...register("reportingReductionRate")} />
         </Field>
-        <Field label="Info-search reduction rate (0–1)" htmlFor="searchReductionRate" error={err("searchReductionRate")}>
+        <Field label={s.searchReductionRate} htmlFor="searchReductionRate" error={err("searchReductionRate")}>
           <Input id="searchReductionRate" type="number" step="0.01" {...register("searchReductionRate")} />
         </Field>
-        <Field label="Delay reduction rate (0–1)" htmlFor="delayReductionRate" error={err("delayReductionRate")}>
+        <Field label={s.delayReductionRate} htmlFor="delayReductionRate" error={err("delayReductionRate")}>
           <Input id="delayReductionRate" type="number" step="0.01" {...register("delayReductionRate")} />
         </Field>
-        <Field label="Change-request reduction rate (0–1)" htmlFor="changeReductionRate" error={err("changeReductionRate")}>
+        <Field label={s.changeReductionRate} htmlFor="changeReductionRate" error={err("changeReductionRate")}>
           <Input id="changeReductionRate" type="number" step="0.01" {...register("changeReductionRate")} />
         </Field>
-        <Field label="Duplicated-work reduction rate (0–1)" htmlFor="duplicatedWorkReductionRate" error={err("duplicatedWorkReductionRate")}>
+        <Field label={s.duplicatedWorkReductionRate} htmlFor="duplicatedWorkReductionRate" error={err("duplicatedWorkReductionRate")}>
           <Input id="duplicatedWorkReductionRate" type="number" step="0.01" {...register("duplicatedWorkReductionRate")} />
         </Field>
-        <Field label="Default software cost (EUR/yr)" htmlFor="defaultSoftwareCost" error={err("defaultSoftwareCost")}>
+        <Field label={s.defaultSoftwareCost} htmlFor="defaultSoftwareCost" error={err("defaultSoftwareCost")}>
           <Input id="defaultSoftwareCost" type="number" step="100" {...register("defaultSoftwareCost")} />
         </Field>
       </div>
@@ -66,7 +69,7 @@ export function SettingsForm({ initial }: { initial: RoiSettings }) {
       <div className="flex justify-end border-t border-slate-100 pt-4">
         <Button type="submit" variant="accent" disabled={isSubmitting}>
           {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
-          Save settings
+          {s.save}
         </Button>
       </div>
     </form>

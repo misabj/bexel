@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getRoiSettings } from "@/lib/db/settings";
 import { SettingsForm } from "@/components/admin/SettingsForm";
+import { getServerDictionary } from "@/i18n/server";
 
 export const metadata: Metadata = {
   title: "Calculator settings",
@@ -11,16 +12,16 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminSettingsPage() {
   const settings = await getRoiSettings();
+  const t = await getServerDictionary();
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
         <h1 className="text-2xl font-extrabold tracking-tight text-brand-950">
-          Calculator settings
+          {t.admin.settings.title}
         </h1>
         <p className="mt-1 text-sm text-slate-500">
-          Adjust the assumptions that drive every ROI calculation. Changes apply
-          to new submissions.
+          {t.admin.settings.subtitle}
         </p>
       </div>
       <SettingsForm initial={settings} />

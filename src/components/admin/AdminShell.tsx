@@ -5,13 +5,8 @@ import { usePathname } from "next/navigation";
 import { LayoutDashboard, Users, Settings, ExternalLink } from "lucide-react";
 import { Logo } from "@/components/marketing/Logo";
 import { LogoutButton } from "./LogoutButton";
+import { useT } from "@/i18n/provider";
 import { cn } from "@/lib/utils";
-
-const NAV = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
-  { href: "/admin/leads", label: "Leads", icon: Users, exact: false },
-  { href: "/admin/settings", label: "Settings", icon: Settings, exact: true },
-];
 
 export function AdminShell({
   children,
@@ -19,6 +14,12 @@ export function AdminShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const t = useT();
+  const NAV = [
+    { href: "/admin", label: t.admin.nav.dashboard, icon: LayoutDashboard, exact: true },
+    { href: "/admin/leads", label: t.admin.nav.leads, icon: Users, exact: false },
+    { href: "/admin/settings", label: t.admin.nav.settings, icon: Settings, exact: true },
+  ];
 
   return (
     <div className="min-h-screen bg-slate-100 lg:grid lg:grid-cols-[260px_1fr]">
@@ -27,7 +28,7 @@ export function AdminShell({
           <div>
             <Logo />
             <p className="mt-1 hidden text-xs font-medium text-slate-400 lg:block">
-              Sales Admin
+              {t.admin.nav.salesAdmin}
             </p>
           </div>
           <div className="lg:hidden">
@@ -62,7 +63,7 @@ export function AdminShell({
             className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-brand-700 transition hover:bg-slate-100 lg:hidden"
           >
             <ExternalLink className="h-4 w-4" />
-            Public site
+            {t.admin.nav.publicSite}
           </Link>
         </nav>
 
@@ -72,10 +73,10 @@ export function AdminShell({
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-brand-700 hover:bg-slate-100"
           >
             <ExternalLink className="h-4 w-4" />
-            View public site
+            {t.admin.nav.viewPublicSite}
           </Link>
           <LogoutButton />
-          <p className="truncate px-3 pt-2 text-xs text-slate-400">Administrator</p>
+          <p className="truncate px-3 pt-2 text-xs text-slate-400">{t.admin.nav.administrator}</p>
         </div>
       </aside>
 

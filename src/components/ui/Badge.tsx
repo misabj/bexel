@@ -1,6 +1,8 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import type { LeadStatus, LeadTemperature } from "@/types";
-import { LEAD_STATUS_LABELS, TEMPERATURE_LABELS } from "@/config/options";
+import { useT } from "@/i18n/provider";
 
 const temperatureStyles: Record<LeadTemperature, string> = {
   COLD: "bg-sky-100 text-sky-700 ring-sky-200",
@@ -38,9 +40,11 @@ export function Badge({
 }
 
 export function TemperatureBadge({ value }: { value: LeadTemperature }) {
-  return <Badge className={temperatureStyles[value]}>{TEMPERATURE_LABELS[value]}</Badge>;
+  const t = useT();
+  return <Badge className={temperatureStyles[value]}>{t.admin.temperatures[value] ?? value}</Badge>;
 }
 
 export function StatusBadge({ value }: { value: LeadStatus }) {
-  return <Badge className={statusStyles[value]}>{LEAD_STATUS_LABELS[value]}</Badge>;
+  const t = useT();
+  return <Badge className={statusStyles[value]}>{t.admin.statuses[value] ?? value}</Badge>;
 }

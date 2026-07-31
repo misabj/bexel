@@ -6,11 +6,13 @@ import { Loader2, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Field, Input } from "@/components/ui/form";
 import { useToast } from "@/components/ui/Toast";
+import { useT } from "@/i18n/provider";
 
 export function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
   const { toast } = useToast();
+  const t = useT();
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -27,15 +29,15 @@ export function LoginForm() {
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (!res.ok || !data.ok) {
-        setError(data.error ?? "Login failed.");
+        setError(t.admin.login.incorrect);
         return;
       }
-      toast("Welcome back.", "success");
+      toast(t.admin.login.welcome, "success");
       const from = params.get("from") ?? "/admin";
       router.replace(from);
       router.refresh();
     } catch {
-      setError("Network error. Please try again.");
+      setError(t.admin.login.network);
     } finally {
       setLoading(false);
     }
@@ -43,7 +45,7 @@ export function LoginForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4" noValidate>
-      <Field label="Password" htmlFor="password">
+      <Field label={t.admin.login.password} htmlFor="password">
         <Input
           id="password"
           type="password"
@@ -61,7 +63,7 @@ export function LoginForm() {
       ) : null}
       <Button type="submit" className="w-full" disabled={loading}>
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <LogIn className="h-4 w-4" />}
-        Sign in
+        {t.admin.login.signIn}
       </Button>
     </form>
   );

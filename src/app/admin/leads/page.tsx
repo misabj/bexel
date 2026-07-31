@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { listLeads, type LeadFilters } from "@/lib/leads/queries";
 import { LeadsFilterBar } from "@/components/admin/LeadsFilterBar";
 import { LeadsTable, Pagination } from "@/components/admin/LeadsTable";
+import { getServerDictionary } from "@/i18n/server";
 import type { LeadStatus, LeadTemperature } from "@/types";
 
 export const metadata: Metadata = {
@@ -40,6 +41,8 @@ export default async function LeadsPage({
   };
 
   const { items, total, page, pageSize } = await listLeads(filters);
+  const dict = await getServerDictionary();
+  const l = dict.admin.leads;
 
   // Flattened params for building sort/pagination links.
   const params: Record<string, string | undefined> = {
@@ -56,9 +59,9 @@ export default async function LeadsPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold tracking-tight text-brand-950">Leads</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight text-brand-950">{l.title}</h1>
         <p className="mt-1 text-sm text-slate-500">
-          {total} lead{total === 1 ? "" : "s"} captured from the ROI calculator.
+          {total} {total === 1 ? l.subtitleOne : l.subtitleMany}
         </p>
       </div>
 
@@ -66,8 +69,8 @@ export default async function LeadsPage({
         <LeadsFilterBar />
       </Suspense>
 
-      <LeadsTable items={items} params={params} />
-      <Pagination total={total} page={page} pageSize={pageSize} params={params} />
+      <LeadsTable items={items} params={params} l={l} />
+      <Pagination total={total} page={page} pageSize={pageSize} params={params} l={l} />
     </div>
   );
 }

@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Select, Textarea } from "@/components/ui/form";
 import { useToast } from "@/components/ui/Toast";
+import { useT } from "@/i18n/provider";
 import { LEAD_STATUS_OPTIONS } from "@/config/options";
 import type { LeadStatus } from "@/types";
 
@@ -26,6 +27,8 @@ export function LeadActions({
 }) {
   const router = useRouter();
   const { toast } = useToast();
+  const t = useT();
+  const ac = t.admin.actions;
   const [status, setStatus] = useState<LeadStatus>(currentStatus);
   const [note, setNote] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
@@ -36,13 +39,13 @@ export function LeadActions({
       const response = await fn();
       const data = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (!response.ok || data.ok === false) {
-        toast(data.error ?? "Action failed.", "error");
+        toast(data.error ?? ac.actionFailed, "error");
         return;
       }
       toast(okMessage, "success");
       router.refresh();
     } catch {
-      toast("Network error.", "error");
+      toast(ac.networkError, "error");
     } finally {
       setBusy(null);
     }
@@ -57,7 +60,7 @@ export function LeadActions({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ status: next }),
         }),
-      "Status updated.",
+      ac.statusUpdated,
       "status",
     );
   };
@@ -76,7 +79,7 @@ export function LeadActions({
 
   const addNote = () => {
     if (!note.trim()) {
-      toast("Write a note first.", "error");
+      toast(ac.writeNote, "error");
       return;
     }
     call(
@@ -86,7 +89,7 @@ export function LeadActions({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ note }),
         }),
-      "Note added.",
+      ac.noteAdded,
       "note",
     ).then(() => setNote(""));
   };
@@ -95,7 +98,7 @@ export function LeadActions({
     <div className="space-y-6">
       <div>
         <label htmlFor="lead-status" className="label">
-          Status
+          {ac.status}
         </label>
         <Select
           id="lead-status"
@@ -105,46 +108,46 @@ export function LeadActions({
         >
           {LEAD_STATUS_OPTIONS.map((o) => (
             <option key={o.value} value={o.value}>
-              {o.label}
+              {t.admin.statuses[o.value] ?? o.label}
             </option>
           ))}
         </Select>
       </div>
 
       <div className="grid grid-cols-1 gap-2">
-        <Button variant="primary" onClick={() => runAction("contacted", "Marked as contacted.")} disabled={busy === "contacted"}>
+        <Button variant="primary" onClick={() => runAction("contacted", ac.contacted)} disabled={busy === "contacted"}>
           {busy === "contacted" ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
-          Mark as Contacted
+          {ac.markContacted}
         </Button>
-        <Button variant="outline" onClick={() => runAction("demo", "Demo scheduled.")} disabled={busy === "demo"}>
+        <Button variant="outline" onClick={() => runAction("demo", ac.demoScheduled)} disabled={busy === "demo"}>
           {busy === "demo" ? <Loader2 className="h-4 w-4 animate-spin" /> : <CalendarClock className="h-4 w-4" />}
-          Schedule Demo
+          {ac.scheduleDemo}
         </Button>
-        <Button variant="outline" onClick={() => runAction("follow_up", "Follow-up sent.")} disabled={busy === "follow_up"}>
+        <Button variant="outline" onClick={() => runAction("follow_up", ac.followupSent)} disabled={busy === "follow_up"}>
           {busy === "follow_up" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-          Send Follow-up
+          {ac.sendFollowup}
         </Button>
         <Link href={`/report/${leadId}`} target="_blank">
           <Button variant="ghost" className="w-full">
             <FileDown className="h-4 w-4" />
-            Export PDF
+            {ac.exportPdf}
           </Button>
         </Link>
       </div>
 
       <div>
         <label htmlFor="lead-note" className="label">
-          Add internal note
+          {ac.addNote}
         </label>
         <Textarea
           id="lead-note"
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          placeholder="Log a call, context or next step…"
+          placeholder={ac.notePlaceholder}
         />
         <Button className="mt-2 w-full" variant="accent" onClick={addNote} disabled={busy === "note"}>
           {busy === "note" ? <Loader2 className="h-4 w-4 animate-spin" /> : <MessageSquarePlus className="h-4 w-4" />}
-          Save note
+          {ac.saveNote}
         </Button>
       </div>
     </div>

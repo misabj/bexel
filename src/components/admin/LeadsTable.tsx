@@ -5,6 +5,9 @@ import { formatCurrency } from "@/lib/currency";
 import { formatDate, cn } from "@/lib/utils";
 import type { LeadListItem } from "@/lib/leads/queries";
 import type { Currency } from "@/types";
+import type { Dictionary } from "@/i18n/dictionaries";
+
+type LeadsLabels = Dictionary["admin"]["leads"];
 
 type Params = Record<string, string | undefined>;
 
@@ -50,14 +53,16 @@ function SortHeader({
 export function LeadsTable({
   items,
   params,
+  l,
 }: {
   items: LeadListItem[];
   params: Params;
+  l: LeadsLabels;
 }) {
   if (items.length === 0) {
     return (
       <div className="card p-12 text-center">
-        <p className="text-sm text-slate-500">No leads match the current filters.</p>
+        <p className="text-sm text-slate-500">{l.noMatch}</p>
       </div>
     );
   }
@@ -68,16 +73,16 @@ export function LeadsTable({
         <table className="w-full text-sm">
           <thead className="border-b border-slate-100 bg-slate-50 text-xs uppercase tracking-wide">
             <tr>
-              <SortHeader label="Name" field="name" params={params} />
-              <SortHeader label="Company" field="company" params={params} />
-              <th className="px-4 py-3 text-left font-semibold text-slate-500">Country</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-500">Job title</th>
-              <SortHeader label="Project value" field="projectValue" params={params} className="text-right" />
-              <SortHeader label="Score" field="leadScore" params={params} />
-              <th className="px-4 py-3 text-left font-semibold text-slate-500">Temp.</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-500">Status</th>
-              <SortHeader label="Created" field="createdAt" params={params} />
-              <th className="px-4 py-3 text-right font-semibold text-slate-500">Actions</th>
+              <SortHeader label={l.colName} field="name" params={params} />
+              <SortHeader label={l.colCompany} field="company" params={params} />
+              <th className="px-4 py-3 text-left font-semibold text-slate-500">{l.colCountry}</th>
+              <th className="px-4 py-3 text-left font-semibold text-slate-500">{l.colJobTitle}</th>
+              <SortHeader label={l.colProjectValue} field="projectValue" params={params} className="text-right" />
+              <SortHeader label={l.colScore} field="leadScore" params={params} />
+              <th className="px-4 py-3 text-left font-semibold text-slate-500">{l.colTemp}</th>
+              <th className="px-4 py-3 text-left font-semibold text-slate-500">{l.colStatus}</th>
+              <SortHeader label={l.colCreated} field="createdAt" params={params} />
+              <th className="px-4 py-3 text-right font-semibold text-slate-500">{l.colActions}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -105,7 +110,7 @@ export function LeadsTable({
                     href={`/admin/leads/${lead.id}`}
                     className="inline-flex items-center gap-1 text-sm font-semibold text-accent-600 hover:text-accent-700"
                   >
-                    View
+                    {l.view}
                     <ChevronRight className="h-4 w-4" />
                   </Link>
                 </td>
@@ -123,11 +128,13 @@ export function Pagination({
   page,
   pageSize,
   params,
+  l,
 }: {
   total: number;
   page: number;
   pageSize: number;
   params: Params;
+  l: LeadsLabels;
 }) {
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   if (totalPages <= 1) return null;
@@ -138,16 +145,16 @@ export function Pagination({
   return (
     <div className="flex items-center justify-between">
       <p className="text-sm text-slate-500">
-        Showing <span className="font-medium text-brand-800">{from}</span>–
-        <span className="font-medium text-brand-800">{to}</span> of{" "}
+        {l.showing} <span className="font-medium text-brand-800">{from}</span>–
+        <span className="font-medium text-brand-800">{to}</span> {l.of}{" "}
         <span className="font-medium text-brand-800">{total}</span>
       </p>
       <div className="flex items-center gap-2">
-        <PageLink params={params} page={page - 1} disabled={page <= 1} label="Previous" />
+        <PageLink params={params} page={page - 1} disabled={page <= 1} label={l.previous} />
         <span className="text-sm text-slate-500">
-          Page {page} / {totalPages}
+          {l.page} {page} / {totalPages}
         </span>
-        <PageLink params={params} page={page + 1} disabled={page >= totalPages} label="Next" />
+        <PageLink params={params} page={page + 1} disabled={page >= totalPages} label={l.next} />
       </div>
     </div>
   );
