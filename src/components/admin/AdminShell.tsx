@@ -22,12 +22,12 @@ export function AdminShell({
   ];
 
   return (
-    <div className="min-h-screen bg-slate-100 lg:grid lg:grid-cols-[260px_1fr]">
-      <aside className="border-b border-slate-200 bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:border-b-0 lg:border-r">
+    <div className="min-h-screen bg-slate-100 dark:bg-ink-900 lg:grid lg:grid-cols-[260px_1fr]">
+      <aside className="border-b border-slate-200 bg-white dark:border-white/10 dark:bg-ink-800 lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:border-b-0 lg:border-r">
         <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:block lg:px-6 lg:py-5">
           <div>
             <Logo />
-            <p className="mt-1 hidden text-xs font-medium text-slate-400 lg:block">
+            <p className="mt-1 hidden text-xs font-medium text-slate-400 dark:text-slate-500 lg:block">
               {t.admin.nav.salesAdmin}
             </p>
           </div>
@@ -50,7 +50,7 @@ export function AdminShell({
                   "flex shrink-0 items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition lg:gap-3 lg:py-2.5",
                   active
                     ? "bg-brand-800 text-white"
-                    : "text-brand-700 hover:bg-slate-100",
+                    : "text-brand-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-ink-700/50",
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -60,23 +60,23 @@ export function AdminShell({
           })}
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-brand-700 transition hover:bg-slate-100 lg:hidden"
+            className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-brand-700 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-ink-700/50 lg:hidden"
           >
             <ExternalLink className="h-4 w-4" />
             {t.admin.nav.publicSite}
           </Link>
         </nav>
 
-        <div className="hidden space-y-2 border-t border-slate-100 p-4 lg:block">
+        <div className="hidden space-y-2 border-t border-slate-100 dark:border-white/10 p-4 lg:block">
           <Link
             href="/"
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-brand-700 hover:bg-slate-100"
+            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-brand-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-ink-700/50"
           >
             <ExternalLink className="h-4 w-4" />
             {t.admin.nav.viewPublicSite}
           </Link>
           <LogoutButton />
-          <p className="truncate px-3 pt-2 text-xs text-slate-400">{t.admin.nav.administrator}</p>
+          <p className="truncate px-3 pt-2 text-xs text-slate-400 dark:text-slate-500">{t.admin.nav.administrator}</p>
         </div>
       </aside>
 

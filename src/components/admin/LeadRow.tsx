@@ -46,24 +46,24 @@ export function LeadRow({ lead, l }: { lead: LeadListItem; l: LeadsLabels }) {
   }
 
   return (
-    <tr onClick={openLead} className="cursor-pointer transition hover:bg-slate-50">
-      <td className="px-4 py-3 font-medium text-brand-900">{lead.name}</td>
-      <td className="px-4 py-3 text-slate-600">{lead.company}</td>
-      <td className="px-4 py-3 text-slate-600">{lead.country}</td>
-      <td className="px-4 py-3 text-slate-600">{lead.jobTitle}</td>
-      <td className="px-4 py-3 text-right font-medium text-brand-900">
+    <tr onClick={openLead} className="cursor-pointer transition hover:bg-slate-50 dark:hover:bg-ink-700/30">
+      <td className="px-4 py-3 font-medium text-brand-900 dark:text-white">{lead.name}</td>
+      <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{lead.company}</td>
+      <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{lead.country}</td>
+      <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{lead.jobTitle}</td>
+      <td className="px-4 py-3 text-right font-medium text-brand-900 dark:text-white">
         {lead.projectValue != null
           ? formatCurrency(lead.projectValue, (lead.currency as Currency) ?? "EUR")
           : "—"}
       </td>
-      <td className="px-4 py-3 font-bold text-brand-900">{lead.leadScore}</td>
+      <td className="px-4 py-3 font-bold text-brand-900 dark:text-white">{lead.leadScore}</td>
       <td className="px-4 py-3">
         <TemperatureBadge value={lead.temperature} />
       </td>
       <td className="px-4 py-3">
         <StatusBadge value={lead.status} />
       </td>
-      <td className="px-4 py-3 text-slate-500">{formatDate(lead.createdAt)}</td>
+      <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{formatDate(lead.createdAt)}</td>
       <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-end gap-3">
           <Link
@@ -79,7 +79,7 @@ export function LeadRow({ lead, l }: { lead: LeadListItem; l: LeadsLabels }) {
             disabled={deleting}
             aria-label={l.delete}
             title={l.delete}
-            className="inline-flex items-center rounded-lg p-1.5 text-slate-400 transition hover:bg-red-50 hover:text-red-600 disabled:opacity-50"
+            className="inline-flex items-center rounded-lg p-1.5 text-slate-400 transition hover:bg-red-50 hover:text-red-600 disabled:opacity-50 dark:text-slate-500 dark:hover:bg-red-500/10 dark:hover:text-red-400"
           >
             {deleting ? (
               <Loader2 className="h-4 w-4 animate-spin" />

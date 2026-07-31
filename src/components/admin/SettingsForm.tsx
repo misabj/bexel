@@ -66,7 +66,7 @@ export function SettingsForm({ initial }: { initial: RoiSettings }) {
         </Field>
       </div>
 
-      <div className="flex justify-end border-t border-slate-100 pt-4">
+      <div className="flex justify-end border-t border-slate-100 pt-4 dark:border-white/10">
         <Button type="submit" variant="accent" disabled={isSubmitting}>
           {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
           {s.save}

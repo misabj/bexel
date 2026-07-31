@@ -51,7 +51,7 @@ export function LeadsFilterBar() {
     <div className="card space-y-4">
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
         <div className="relative lg:col-span-2">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
           <Input
             placeholder={l.searchPlaceholder}
             value={search}

@@ -17,10 +17,10 @@ export default async function AdminSettingsPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold tracking-tight text-brand-950">
+        <h1 className="text-2xl font-extrabold tracking-tight text-brand-950 dark:text-white">
           {t.admin.settings.title}
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           {t.admin.settings.subtitle}
         </p>
       </div>

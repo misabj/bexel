@@ -17,7 +17,7 @@ function ChartCard({
 }) {
   return (
     <div className="card">
-      <h3 className="mb-4 text-sm font-semibold text-brand-900">{title}</h3>
+      <h3 className="mb-4 text-sm font-semibold text-brand-900 dark:text-white">{title}</h3>
       {children}
     </div>
   );

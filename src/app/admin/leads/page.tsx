@@ -59,8 +59,8 @@ export default async function LeadsPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold tracking-tight text-brand-950">{l.title}</h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <h1 className="text-2xl font-extrabold tracking-tight text-brand-950 dark:text-white">{l.title}</h1>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           {total} {total === 1 ? l.subtitleOne : l.subtitleMany}
         </p>
       </div>

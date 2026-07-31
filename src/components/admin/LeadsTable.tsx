@@ -38,8 +38,8 @@ function SortHeader({
       <Link
         href={buildHref(params, { sort: field, dir: nextDir, page: undefined })}
         className={cn(
-          "inline-flex items-center gap-1 hover:text-brand-700",
-          active ? "text-brand-800" : "text-slate-500",
+          "inline-flex items-center gap-1 hover:text-brand-700 dark:hover:text-accent-400",
+          active ? "text-brand-800 dark:text-white" : "text-slate-500 dark:text-slate-400",
         )}
       >
         {label}
@@ -61,7 +61,7 @@ export function LeadsTable({
   if (items.length === 0) {
     return (
       <div className="card p-12 text-center">
-        <p className="text-sm text-slate-500">{l.noMatch}</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400">{l.noMatch}</p>
       </div>
     );
   }
@@ -70,21 +70,21 @@ export function LeadsTable({
     <div className="card overflow-hidden p-0">
       <TableScroll>
         <table className="w-full text-sm">
-          <thead className="border-b border-slate-100 bg-slate-50 text-xs uppercase tracking-wide">
+          <thead className="border-b border-slate-100 bg-slate-50 text-xs uppercase tracking-wide dark:border-white/10 dark:bg-ink-700/40">
             <tr>
               <SortHeader label={l.colName} field="name" params={params} />
               <SortHeader label={l.colCompany} field="company" params={params} />
-              <th className="px-4 py-3 text-left font-semibold text-slate-500">{l.colCountry}</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-500">{l.colJobTitle}</th>
+              <th className="px-4 py-3 text-left font-semibold text-slate-500 dark:text-slate-400">{l.colCountry}</th>
+              <th className="px-4 py-3 text-left font-semibold text-slate-500 dark:text-slate-400">{l.colJobTitle}</th>
               <SortHeader label={l.colProjectValue} field="projectValue" params={params} className="text-right" />
               <SortHeader label={l.colScore} field="leadScore" params={params} />
-              <th className="px-4 py-3 text-left font-semibold text-slate-500">{l.colTemp}</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-500">{l.colStatus}</th>
+              <th className="px-4 py-3 text-left font-semibold text-slate-500 dark:text-slate-400">{l.colTemp}</th>
+              <th className="px-4 py-3 text-left font-semibold text-slate-500 dark:text-slate-400">{l.colStatus}</th>
               <SortHeader label={l.colCreated} field="createdAt" params={params} />
-              <th className="px-4 py-3 text-right font-semibold text-slate-500">{l.colActions}</th>
+              <th className="px-4 py-3 text-right font-semibold text-slate-500 dark:text-slate-400">{l.colActions}</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-slate-100 dark:divide-white/10">
             {items.map((lead) => (
               <LeadRow key={lead.id} lead={lead} l={l} />
             ))}
@@ -116,14 +116,14 @@ export function Pagination({
 
   return (
     <div className="flex items-center justify-between">
-      <p className="text-sm text-slate-500">
-        {l.showing} <span className="font-medium text-brand-800">{from}</span>–
-        <span className="font-medium text-brand-800">{to}</span> {l.of}{" "}
-        <span className="font-medium text-brand-800">{total}</span>
+      <p className="text-sm text-slate-500 dark:text-slate-400">
+        {l.showing} <span className="font-medium text-brand-800 dark:text-white">{from}</span>–
+        <span className="font-medium text-brand-800 dark:text-white">{to}</span> {l.of}{" "}
+        <span className="font-medium text-brand-800 dark:text-white">{total}</span>
       </p>
       <div className="flex items-center gap-2">
         <PageLink params={params} page={page - 1} disabled={page <= 1} label={l.previous} />
-        <span className="text-sm text-slate-500">
+        <span className="text-sm text-slate-500 dark:text-slate-400">
           {l.page} {page} / {totalPages}
         </span>
         <PageLink params={params} page={page + 1} disabled={page >= totalPages} label={l.next} />
@@ -145,7 +145,7 @@ function PageLink({
 }) {
   if (disabled) {
     return (
-      <span className="cursor-not-allowed rounded-lg border border-slate-200 px-3 py-1.5 text-sm text-slate-300">
+      <span className="cursor-not-allowed rounded-lg border border-slate-200 px-3 py-1.5 text-sm text-slate-300 dark:border-white/10 dark:text-slate-600">
         {label}
       </span>
     );
@@ -153,7 +153,7 @@ function PageLink({
   return (
     <Link
       href={buildHref(params, { page: String(page) })}
-      className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-brand-800 hover:bg-slate-50"
+      className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-brand-800 hover:bg-slate-50 dark:border-white/15 dark:text-accent-400 dark:hover:bg-ink-700/50"
     >
       {label}
     </Link>

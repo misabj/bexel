@@ -57,7 +57,7 @@ export function LoginForm() {
         />
       </Field>
       {error ? (
-        <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600" role="alert">
+        <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400" role="alert">
           {error}
         </p>
       ) : null}

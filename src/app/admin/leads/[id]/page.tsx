@@ -63,7 +63,7 @@ export default async function LeadDetailPage({
     <div className="space-y-6">
       <Link
         href="/admin/leads"
-        className="inline-flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-brand-700"
+        className="inline-flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-brand-700 dark:text-slate-400 dark:hover:text-accent-400"
       >
         <ArrowLeft className="h-4 w-4" />
         {d.back}
@@ -71,10 +71,10 @@ export default async function LeadDetailPage({
 
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-brand-950">
+          <h1 className="text-2xl font-extrabold tracking-tight text-brand-950 dark:text-white">
             {lead.firstName} {lead.lastName}
           </h1>
-          <p className="mt-1 text-slate-500">
+          <p className="mt-1 text-slate-500 dark:text-slate-400">
             {lead.jobTitle} · {lead.company}
           </p>
         </div>
@@ -91,7 +91,7 @@ export default async function LeadDetailPage({
         <div className="space-y-6 lg:col-span-2">
           {/* Contact & company */}
           <section className="card">
-            <h2 className="mb-4 text-sm font-semibold text-brand-900">{d.contactCompany}</h2>
+            <h2 className="mb-4 text-sm font-semibold text-brand-900 dark:text-white">{d.contactCompany}</h2>
             <dl className="grid gap-4 sm:grid-cols-2">
               <Info label={d.email} value={lead.email} />
               <Info label={d.phone} value={lead.phone ?? "—"} />
@@ -110,7 +110,7 @@ export default async function LeadDetailPage({
           {/* Project overview */}
           {a ? (
             <section className="card">
-              <h2 className="mb-4 text-sm font-semibold text-brand-900">{d.projectOverview}</h2>
+              <h2 className="mb-4 text-sm font-semibold text-brand-900 dark:text-white">{d.projectOverview}</h2>
               <dl className="grid gap-4 sm:grid-cols-2">
                 <Info label={d.projectName} value={a.projectName ?? "—"} />
                 <Info label={d.projectType} value={e.projectType[a.projectType] ?? a.projectType} />
@@ -127,7 +127,7 @@ export default async function LeadDetailPage({
           {/* Calculator inputs */}
           {a ? (
             <section className="card">
-              <h2 className="mb-4 text-sm font-semibold text-brand-900">{d.reportedChallenges}</h2>
+              <h2 className="mb-4 text-sm font-semibold text-brand-900 dark:text-white">{d.reportedChallenges}</h2>
               <dl className="grid gap-4 sm:grid-cols-2">
                 <Info label={d.monthlyReportingHours} value={String(a.reportingHours)} />
                 <Info label={d.monthlyInfoSearchHours} value={String(a.informationSearchHours)} />
@@ -142,7 +142,7 @@ export default async function LeadDetailPage({
                   {challenges.map((c) => (
                     <span
                       key={c}
-                      className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600"
+                      className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-white/10 dark:text-slate-300"
                     >
                       {e.challenge[c] ?? c}
                     </span>
@@ -155,7 +155,7 @@ export default async function LeadDetailPage({
           {/* ROI results */}
           {r ? (
             <section className="card">
-              <h2 className="mb-4 text-sm font-semibold text-brand-900">{d.roiResults}</h2>
+              <h2 className="mb-4 text-sm font-semibold text-brand-900 dark:text-white">{d.roiResults}</h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <Metric label={d.totalSavings} value={money(r.totalSavings)} />
                 <Metric label={d.roi} value={formatPercent(r.roiPercentage)} />
@@ -166,7 +166,7 @@ export default async function LeadDetailPage({
                 <Metric label={d.delaySavings} value={money(r.delaySavings)} />
                 <Metric label={d.reworkSavings} value={money(r.reworkSavings)} />
               </div>
-              <p className="mt-4 text-xs text-slate-400">
+              <p className="mt-4 text-xs text-slate-400 dark:text-slate-500">
                 {d.estimatedInvestment} {money(r.estimatedInvestment)} · {d.calculation} v{r.calculationVersion}
               </p>
             </section>
@@ -175,17 +175,17 @@ export default async function LeadDetailPage({
           {/* Score breakdown */}
           {scoreDetail ? (
             <section className="card">
-              <h2 className="mb-4 text-sm font-semibold text-brand-900">
+              <h2 className="mb-4 text-sm font-semibold text-brand-900 dark:text-white">
                 {d.scoreBreakdown} ({scoreDetail.score}/100)
               </h2>
-              <ul className="divide-y divide-slate-100">
+              <ul className="divide-y divide-slate-100 dark:divide-white/10">
                 {scoreDetail.breakdown.length === 0 ? (
-                  <li className="py-2 text-sm text-slate-500">{d.noSignals}</li>
+                  <li className="py-2 text-sm text-slate-500 dark:text-slate-400">{d.noSignals}</li>
                 ) : (
                   scoreDetail.breakdown.map((b) => (
                     <li key={b.label} className="flex items-center justify-between py-2 text-sm">
-                      <span className="text-slate-600">{b.label}</span>
-                      <span className="font-semibold text-emerald-600">+{b.points}</span>
+                      <span className="text-slate-600 dark:text-slate-400">{b.label}</span>
+                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">+{b.points}</span>
                     </li>
                   ))
                 )}
@@ -197,24 +197,24 @@ export default async function LeadDetailPage({
         {/* Sidebar */}
         <div className="space-y-6">
           <section className="card">
-            <h2 className="mb-4 text-sm font-semibold text-brand-900">{d.actions}</h2>
+            <h2 className="mb-4 text-sm font-semibold text-brand-900 dark:text-white">{d.actions}</h2>
             <LeadActions leadId={lead.id} currentStatus={lead.status as LeadStatus} />
           </section>
 
           <section className="card">
-            <h2 className="mb-4 text-sm font-semibold text-brand-900">{d.activityTimeline}</h2>
+            <h2 className="mb-4 text-sm font-semibold text-brand-900 dark:text-white">{d.activityTimeline}</h2>
             <ol className="space-y-4">
               {lead.activities.map((activity) => (
                 <li key={activity.id} className="flex gap-3">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
                     <Clock className="h-3.5 w-3.5" />
                   </span>
                   <div>
-                    <p className="text-sm font-medium text-brand-900">{activity.title}</p>
+                    <p className="text-sm font-medium text-brand-900 dark:text-white">{activity.title}</p>
                     {activity.description ? (
-                      <p className="text-xs text-slate-500">{activity.description}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">{activity.description}</p>
                     ) : null}
-                    <p className="mt-0.5 text-xs text-slate-400">
+                    <p className="mt-0.5 text-xs text-slate-400 dark:text-slate-500">
                       {formatDate(activity.createdAt)}
                     </p>
                   </div>
@@ -231,17 +231,17 @@ export default async function LeadDetailPage({
 function Info({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-xs font-medium uppercase tracking-wide text-slate-400">{label}</dt>
-      <dd className="mt-0.5 text-sm font-medium text-brand-900">{value}</dd>
+      <dt className="text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">{label}</dt>
+      <dd className="mt-0.5 text-sm font-medium text-brand-900 dark:text-white">{value}</dd>
     </div>
   );
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-      <p className="text-xs font-medium text-slate-500">{label}</p>
-      <p className="mt-1 text-lg font-bold text-brand-900">{value}</p>
+    <div className="rounded-xl border border-slate-100 bg-slate-50 p-3 dark:border-white/10 dark:bg-ink-700/40">
+      <p className="text-xs font-medium text-slate-500 dark:text-slate-400">{label}</p>
+      <p className="mt-1 text-lg font-bold text-brand-900 dark:text-white">{value}</p>
     </div>
   );
 }

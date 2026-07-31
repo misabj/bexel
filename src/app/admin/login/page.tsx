@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 export default async function AdminLoginPage() {
   const t = await getServerDictionary();
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4 dark:bg-ink-900">
       <div className="w-full max-w-md">
         <div className="mb-6 flex justify-center">
           <Logo />
         </div>
         <div className="card p-8">
-          <h1 className="text-xl font-bold text-brand-900">{t.admin.login.title}</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-bold text-brand-900 dark:text-white">{t.admin.login.title}</h1>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {t.admin.login.subtitle}
           </p>
           <div className="mt-6">

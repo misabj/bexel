@@ -31,10 +31,10 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-extrabold tracking-tight text-brand-950">
+        <h1 className="text-2xl font-extrabold tracking-tight text-brand-950 dark:text-white">
           {d.title}
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           {d.subtitle}
         </p>
       </div>
@@ -52,7 +52,7 @@ export default async function AdminDashboardPage() {
 
       {stats.totalLeads === 0 ? (
         <div className="card p-10 text-center">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             {d.empty}
           </p>
         </div>
