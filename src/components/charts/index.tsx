@@ -15,10 +15,10 @@ import {
   YAxis,
 } from "recharts";
 
-const BRAND = "#1f4585";
-const BRAND_LIGHT = "#4a7bc2";
-const ACCENT = "#f97316";
-const PALETTE = ["#1f4585", "#2b5aa3", "#4a7bc2", "#f97316", "#fb923c", "#7ba3d9", "#152b52"];
+const BRAND = "#28665d";
+const BRAND_LIGHT = "#4f9d8d";
+const ACCENT = "#87a73b";
+const PALETTE = ["#28665d", "#347f72", "#4f9d8d", "#87a73b", "#9db84f", "#45b997", "#173f45"];
 
 const tooltipStyle = {
   borderRadius: 12,

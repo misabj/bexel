@@ -58,11 +58,6 @@ export function Navbar() {
               <span className="hidden sm:inline">{t.nav.login}</span>
             </Button>
           </Link>
-          <Link href="/#demo" className="hidden lg:block">
-            <Button variant="ghost" size="sm">
-              {t.nav.demo}
-            </Button>
-          </Link>
           <Link href="/calculator">
             <Button variant="accent" size="sm">
               {t.nav.calculate}

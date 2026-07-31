@@ -110,6 +110,13 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
     scrollTop();
   };
 
+  const goToPreviousStep = (targetStep: number) => {
+    if (targetStep >= step) return;
+    setStep(targetStep);
+    if (step === 3) setResult(null);
+    scrollTop();
+  };
+
   const onSubmit = handleSubmit(async (values) => {
     // Guard: only the final "Challenges" step may submit. Prevents an
     // accidental submit when the Continue button is swapped for the submit
@@ -150,7 +157,7 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
   return (
     <div className="mx-auto max-w-4xl">
       <div className="mb-8">
-        <Stepper current={step} />
+        <Stepper current={step} onStepClick={goToPreviousStep} />
       </div>
 
       {helperText && step < 3 ? (
@@ -206,7 +213,7 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               ) : (
-                <Button key="submit" type="submit" variant="accent" disabled={submitting} className="shadow-glow">
+                <Button key="submit" type="submit" variant="accent" disabled={submitting} className="shadow-[0_0_0_1px_rgba(249,115,22,0.12),0_8px_18px_-12px_rgba(249,115,22,0.28)]">
                   {submitting ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />

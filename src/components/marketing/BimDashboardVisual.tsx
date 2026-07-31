@@ -29,12 +29,12 @@ export function BimDashboardVisual() {
               <svg viewBox="0 0 220 200" className="h-52 w-52" role="img" aria-label="BIM building model">
                 <defs>
                   <linearGradient id="face-a" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0" stopColor="#2b5aa3" />
-                    <stop offset="1" stopColor="#1a386c" />
+                    <stop offset="0" stopColor="#347f72" />
+                    <stop offset="1" stopColor="#23534d" />
                   </linearGradient>
                   <linearGradient id="face-b" x1="0" x2="1" y1="0" y2="0">
-                    <stop offset="0" stopColor="#1f4585" />
-                    <stop offset="1" stopColor="#152b52" />
+                    <stop offset="0" stopColor="#28665d" />
+                    <stop offset="1" stopColor="#173f45" />
                   </linearGradient>
                 </defs>
                 {/* Stacked isometric floors */}
@@ -44,8 +44,8 @@ export function BimDashboardVisual() {
                     <g key={i}>
                       <polygon
                         points={`110,${y} 180,${y + 24} 110,${y + 48} 40,${y + 24}`}
-                        fill="#eef4fb"
-                        stroke="#7ba3d9"
+                        fill="#edf7f4"
+                        stroke="#7abdae"
                         strokeWidth="1.5"
                       />
                       <polygon
@@ -60,8 +60,8 @@ export function BimDashboardVisual() {
                   );
                 })}
                 {/* Highlighted clash marker */}
-                <circle cx="150" cy="70" r="7" fill="#f97316" opacity="0.9" />
-                <circle cx="150" cy="70" r="12" fill="none" stroke="#f97316" strokeWidth="1.5" opacity="0.5" />
+                <circle cx="150" cy="70" r="7" fill="#87a73b" opacity="0.9" />
+                <circle cx="150" cy="70" r="12" fill="none" stroke="#87a73b" strokeWidth="1.5" opacity="0.5" />
               </svg>
               <span className="absolute bottom-3 left-3 rounded-md bg-white/80 px-2 py-1 text-[11px] font-medium text-brand-700 dark:bg-ink-900/80 dark:text-slate-200">
                 4D / 5D model

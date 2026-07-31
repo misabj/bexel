@@ -9,38 +9,38 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Primary business color — deep BIM navy
+        // Primary BEXEL tone - deep blue-green
         brand: {
-          50: "#eef4fb",
-          100: "#d6e4f5",
-          200: "#adc8ea",
-          300: "#7ba3d9",
-          400: "#4a7bc2",
-          500: "#2b5aa3",
-          600: "#1f4585",
-          700: "#1a386c",
-          800: "#152b52",
-          900: "#0f2140",
-          950: "#0a1730",
+          50: "#edf7f4",
+          100: "#d5ece6",
+          200: "#acd9ce",
+          300: "#7abdae",
+          400: "#4f9d8d",
+          500: "#347f72",
+          600: "#28665d",
+          700: "#23534d",
+          800: "#173f45",
+          900: "#0f2f3a",
+          950: "#082126",
         },
-        // Accent — construction amber/orange
+        // Accent - BEXEL green
         accent: {
-          50: "#fff7ed",
-          100: "#ffedd5",
-          200: "#fed7aa",
-          300: "#fdba74",
-          400: "#fb923c",
-          500: "#f97316",
-          600: "#ea580c",
-          700: "#c2410c",
-          800: "#9a3412",
-          900: "#7c2d12",
+          50: "#f5f8ec",
+          100: "#e7efd2",
+          200: "#d2e1aa",
+          300: "#b8cd7b",
+          400: "#9db84f",
+          500: "#87a73b",
+          600: "#6f8c2f",
+          700: "#556c27",
+          800: "#455723",
+          900: "#3b4b22",
         },
-        // Cyan spark used for gradients / glow highlights
+        // Fresh mint highlight used for gradients / glow highlights
         spark: {
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
+          400: "#86d3bd",
+          500: "#45b997",
+          600: "#2d9578",
         },
         // Neutral surface tokens for dark mode
         ink: {
@@ -59,22 +59,22 @@ const config: Config = {
         card: "0 1px 3px rgba(15, 33, 64, 0.08), 0 8px 24px rgba(15, 33, 64, 0.06)",
         "card-hover":
           "0 2px 6px rgba(15, 33, 64, 0.10), 0 16px 40px rgba(15, 33, 64, 0.10)",
-        glow: "0 0 0 1px rgba(249,115,22,0.12), 0 8px 18px -12px rgba(249,115,22,0.28)",
+        glow: "0 0 0 1px rgba(135,167,59,0.12), 0 8px 18px -12px rgba(135,167,59,0.28)",
         "glow-spark":
-          "0 0 0 1px rgba(56,189,248,0.12), 0 8px 18px -12px rgba(56,189,248,0.28)",
+          "0 0 0 1px rgba(69,185,151,0.12), 0 8px 18px -12px rgba(69,185,151,0.28)",
         "inner-top": "inset 0 1px 0 0 rgba(255,255,255,0.06)",
       },
       backgroundImage: {
         "grid-brand":
-          "linear-gradient(to right, rgba(15,33,64,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,33,64,0.06) 1px, transparent 1px)",
+          "linear-gradient(to right, rgba(15,47,58,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,47,58,0.06) 1px, transparent 1px)",
         "grid-light":
           "linear-gradient(to right, rgba(148,163,184,0.10) 1px, transparent 1px), linear-gradient(to bottom, rgba(148,163,184,0.10) 1px, transparent 1px)",
         "hero-radial":
-          "radial-gradient(60% 55% at 50% 0%, rgba(249,115,22,0.18), transparent 70%), radial-gradient(50% 50% at 85% 20%, rgba(56,189,248,0.16), transparent 70%)",
+          "radial-gradient(60% 55% at 50% 0%, rgba(135,167,59,0.18), transparent 70%), radial-gradient(50% 50% at 85% 20%, rgba(69,185,151,0.14), transparent 70%)",
         "accent-gradient":
-          "linear-gradient(120deg, #f97316 0%, #fb923c 40%, #38bdf8 120%)",
+          "linear-gradient(120deg, #87a73b 0%, #45b997 58%, #d9e8b4 120%)",
         "brand-gradient":
-          "linear-gradient(135deg, #0f2140 0%, #152b52 50%, #1a386c 100%)",
+          "linear-gradient(135deg, #082126 0%, #0f2f3a 52%, #23534d 100%)",
       },
       keyframes: {
         "fade-up": {

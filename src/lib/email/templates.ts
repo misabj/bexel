@@ -17,8 +17,8 @@ interface ClientEmailArgs {
   ctaUrl: string;
 }
 
-const BRAND = "#0f2140";
-const ACCENT = "#f97316";
+const BRAND = "#0f2f3a";
+const ACCENT = "#87a73b";
 
 function shell(title: string, body: string): string {
   return `<!DOCTYPE html>

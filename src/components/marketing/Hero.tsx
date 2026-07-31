@@ -77,7 +77,7 @@ export function Hero() {
             className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
             <Link href="/calculator">
-              <Button variant="accent" size="lg" className="w-full shadow-glow sm:w-auto">
+              <Button variant="accent" size="lg" className="w-full shadow-[0_0_0_1px_rgba(249,115,22,0.12),0_8px_18px_-12px_rgba(249,115,22,0.28)] sm:w-auto">
                 {t.hero.ctaPrimary}
                 <ArrowRight className="h-4 w-4" />
               </Button>

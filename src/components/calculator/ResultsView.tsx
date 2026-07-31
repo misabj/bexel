@@ -209,7 +209,7 @@ export function ResultsView({
       {/* Actions */}
       <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a href="mailto:sales@bexel-demo.com?subject=Personalized%20BIM%20Demo">
-          <Button variant="accent" size="lg" className="shadow-glow">
+          <Button variant="accent" size="lg" className="shadow-[0_0_0_1px_rgba(249,115,22,0.12),0_8px_18px_-12px_rgba(249,115,22,0.28)]">
             {r.requestDemo}
             <ArrowRight className="h-4 w-4" />
           </Button>

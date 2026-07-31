@@ -37,20 +37,11 @@ export function DemoCta() {
             <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">{t.demo.subtitle}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Link href="/calculator">
-                <Button variant="accent" size="lg" className="w-full shadow-glow sm:w-auto">
+                <Button variant="accent" size="lg" className="w-full shadow-[0_0_0_1px_rgba(249,115,22,0.12),0_8px_18px_-12px_rgba(249,115,22,0.28)] sm:w-auto">
                   {t.demo.ctaPrimary}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <a href="mailto:sales@bexel-demo.com?subject=BIM%20Demo%20Request">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                >
-                  {t.demo.ctaSecondary}
-                </Button>
-              </a>
             </div>
           </div>
         </motion.div>
