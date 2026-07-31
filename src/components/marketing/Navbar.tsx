@@ -59,7 +59,11 @@ export function Navbar() {
             </Button>
           </Link>
           <Link href="/calculator">
-            <Button variant="accent" size="sm">
+            <Button
+              variant="accent"
+              size="sm"
+              className="h-auto min-h-10 px-4 py-2 leading-tight sm:h-9 sm:min-h-0 sm:px-3 sm:py-0 sm:leading-normal"
+            >
               {t.nav.calculate}
             </Button>
           </Link>

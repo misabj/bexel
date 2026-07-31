@@ -48,8 +48,8 @@ export function LeadsFilterBar() {
   const clearAll = () => router.push(pathname);
 
   return (
-    <div className="card space-y-4">
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+    <div className="card space-y-4 overflow-hidden">
+      <div className="grid min-w-0 gap-3 md:grid-cols-2 lg:grid-cols-4">
         <div className="relative lg:col-span-2">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
           <Input
@@ -84,7 +84,7 @@ export function LeadsFilterBar() {
         </Select>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid min-w-0 gap-3 md:grid-cols-2 lg:grid-cols-4">
         <Input
           placeholder={l.country}
           aria-label="Filter by country"
@@ -96,14 +96,16 @@ export function LeadsFilterBar() {
           aria-label="Created from"
           defaultValue={params.get("dateFrom") ?? ""}
           onChange={(e) => update("dateFrom", e.target.value)}
+          className="min-w-0 max-w-full"
         />
         <Input
           type="date"
           aria-label="Created to"
           defaultValue={params.get("dateTo") ?? ""}
           onChange={(e) => update("dateTo", e.target.value)}
+          className="min-w-0 max-w-full"
         />
-        <div className="flex gap-2">
+        <div className="flex min-w-0 gap-2">
           {hasFilters ? (
             <Button variant="ghost" onClick={clearAll} className="flex-1">
               <X className="h-4 w-4" />
