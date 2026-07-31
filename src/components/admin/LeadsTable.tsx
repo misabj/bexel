@@ -1,11 +1,9 @@
 import Link from "next/link";
-import { ArrowUpDown, ArrowUp, ArrowDown, ChevronRight } from "lucide-react";
-import { StatusBadge, TemperatureBadge } from "@/components/ui/Badge";
-import { formatCurrency } from "@/lib/currency";
-import { formatDate, cn } from "@/lib/utils";
+import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 import type { LeadListItem } from "@/lib/leads/queries";
-import type { Currency } from "@/types";
 import type { Dictionary } from "@/i18n/dictionaries";
+import { LeadRow } from "./LeadRow";
 
 type LeadsLabels = Dictionary["admin"]["leads"];
 
@@ -87,34 +85,7 @@ export function LeadsTable({
           </thead>
           <tbody className="divide-y divide-slate-100">
             {items.map((lead) => (
-              <tr key={lead.id} className="transition hover:bg-slate-50">
-                <td className="px-4 py-3 font-medium text-brand-900">{lead.name}</td>
-                <td className="px-4 py-3 text-slate-600">{lead.company}</td>
-                <td className="px-4 py-3 text-slate-600">{lead.country}</td>
-                <td className="px-4 py-3 text-slate-600">{lead.jobTitle}</td>
-                <td className="px-4 py-3 text-right font-medium text-brand-900">
-                  {lead.projectValue != null
-                    ? formatCurrency(lead.projectValue, (lead.currency as Currency) ?? "EUR")
-                    : "—"}
-                </td>
-                <td className="px-4 py-3 font-bold text-brand-900">{lead.leadScore}</td>
-                <td className="px-4 py-3">
-                  <TemperatureBadge value={lead.temperature} />
-                </td>
-                <td className="px-4 py-3">
-                  <StatusBadge value={lead.status} />
-                </td>
-                <td className="px-4 py-3 text-slate-500">{formatDate(lead.createdAt)}</td>
-                <td className="px-4 py-3 text-right">
-                  <Link
-                    href={`/admin/leads/${lead.id}`}
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-accent-600 hover:text-accent-700"
-                  >
-                    {l.view}
-                    <ChevronRight className="h-4 w-4" />
-                  </Link>
-                </td>
-              </tr>
+              <LeadRow key={lead.id} lead={lead} l={l} />
             ))}
           </tbody>
         </table>

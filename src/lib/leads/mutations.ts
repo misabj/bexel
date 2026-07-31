@@ -58,6 +58,13 @@ export async function addLeadNote(leadId: string, note: string): Promise<void> {
   await logActivity(leadId, "NOTE_ADDED", "Internal note", note);
 }
 
+/** Permanently delete a lead and its related activity records. */
+export async function deleteLead(leadId: string): Promise<void> {
+  const lead = await prisma.lead.findUnique({ where: { id: leadId } });
+  if (!lead) throw new Error("Lead not found");
+  await prisma.lead.delete({ where: { id: leadId } });
+}
+
 /** Mark a lead as contacted (status + activity). */
 export async function markAsContacted(leadId: string): Promise<void> {
   await updateLeadStatus(leadId, "CONTACTED");
