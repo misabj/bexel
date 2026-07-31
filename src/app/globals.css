@@ -7,17 +7,36 @@
     color-scheme: light;
   }
 
+  html.dark {
+    color-scheme: dark;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-slate-50 text-brand-900 antialiased;
+    @apply bg-slate-50 text-brand-900 antialiased transition-colors duration-300;
+  }
+
+  .dark body {
+    @apply bg-ink-900 text-slate-100;
   }
 
   /* Visible, high-contrast focus ring for keyboard navigation. */
   :focus-visible {
     @apply outline-none ring-2 ring-accent-500 ring-offset-2 ring-offset-white;
+  }
+
+  .dark :focus-visible {
+    @apply ring-offset-ink-900;
+  }
+
+  ::selection {
+    @apply bg-accent-500/30 text-brand-950;
+  }
+  .dark ::selection {
+    @apply bg-accent-500/40 text-white;
   }
 }
 
@@ -27,11 +46,25 @@
   }
 
   .card {
-    @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-card sm:p-6;
+    @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition-colors duration-300 sm:p-6;
+  }
+  .dark .card {
+    @apply border-white/10 bg-ink-800/70 shadow-none;
+  }
+
+  /* Frosted glass surface for hero/nav accents */
+  .glass {
+    @apply border border-white/60 bg-white/70 backdrop-blur-xl;
+  }
+  .dark .glass {
+    @apply border-white/10 bg-white/5;
   }
 
   .label {
     @apply mb-1.5 block text-sm font-medium text-brand-800;
+  }
+  .dark .label {
+    @apply text-slate-300;
   }
 
   .field {
@@ -40,11 +73,48 @@
       focus:border-brand-500 focus:ring-2 focus:ring-brand-200
       disabled:cursor-not-allowed disabled:bg-slate-100;
   }
+  .dark .field {
+    @apply border-white/10 bg-ink-700/60 text-slate-100 placeholder:text-slate-500
+      focus:border-accent-400 focus:ring-accent-500/30 disabled:bg-ink-800;
+  }
 
   .field-error {
     @apply border-red-400 focus:border-red-500 focus:ring-red-200;
   }
+
+  /* Gradient text used for hero headlines */
+  .text-gradient {
+    @apply bg-accent-gradient bg-clip-text text-transparent;
+  }
+
+  /* Animated conic border for premium CTA cards */
+  .glow-border {
+    @apply relative;
+  }
 }
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+  .animation-delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-aurora,
+    .animate-shimmer,
+    .animate-pulse-ring,
+    .animate-fade-up {
+      animation: none !important;
+    }
+  }
+}
+
 
 /* ── Print-friendly report styling ──────────────────────────── */
 @media print {

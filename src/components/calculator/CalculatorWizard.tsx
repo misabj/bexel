@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useToast } from "@/components/ui/Toast";
+import { useT } from "@/i18n/provider";
 import { Stepper } from "./Stepper";
 import { StepContact, StepProject, StepChallenges } from "./steps";
 import { ResultsView } from "./ResultsView";
@@ -39,6 +41,7 @@ interface SubmitResponse {
 
 export function CalculatorWizard({ audience }: { audience?: Audience }) {
   const { toast } = useToast();
+  const t = useT();
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{
@@ -51,6 +54,7 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
   } | null>(null);
 
   const helper = AUDIENCES.find((a) => a.value === audience)?.helper;
+  const helperText = audience ? t.audience.helpers[audience] : helper;
 
   const {
     register,
@@ -94,7 +98,7 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
   const goNext = async () => {
     const valid = await trigger(STEP_FIELDS[step]);
     if (!valid) {
-      toast("Please complete the highlighted fields.", "error");
+      toast(t.calc.toast.fix, "error");
       return;
     }
     setStep((s) => Math.min(s + 1, 2));
@@ -121,7 +125,7 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
       const data = (await res.json()) as SubmitResponse;
 
       if (!res.ok || !data.ok || !data.result) {
-        toast(data.error ?? "Something went wrong. Please try again.", "error");
+        toast(data.error ?? t.calc.toast.error, "error");
         return;
       }
 
@@ -135,9 +139,9 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
       });
       setStep(3);
       scrollTop();
-      toast("Your ROI estimate is ready.", "success");
+      toast(t.calc.toast.ready, "success");
     } catch {
-      toast("Network error. Please try again.", "error");
+      toast(t.calc.toast.network, "error");
     } finally {
       setSubmitting(false);
     }
@@ -149,10 +153,10 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
         <Stepper current={step} />
       </div>
 
-      {helper && step < 3 ? (
-        <div className="mb-6 flex items-start gap-3 rounded-xl border border-brand-100 bg-brand-50 p-4">
+      {helperText && step < 3 ? (
+        <div className="mb-6 flex items-start gap-3 rounded-xl border border-brand-100 bg-brand-50 p-4 dark:border-white/10 dark:bg-white/5">
           <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
-          <p className="text-sm text-brand-800">{helper}</p>
+          <p className="text-sm text-brand-800 dark:text-slate-200">{helperText}</p>
         </div>
       ) : null}
 
@@ -174,33 +178,43 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
               <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
             </div>
 
-            {step === 0 ? <StepContact register={register} errors={errors} /> : null}
-            {step === 1 ? <StepProject register={register} errors={errors} /> : null}
-            {step === 2 ? (
-              <StepChallenges register={register} errors={errors} watch={watch} setValue={setValue} />
-            ) : null}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -24 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {step === 0 ? <StepContact register={register} errors={errors} /> : null}
+                {step === 1 ? <StepProject register={register} errors={errors} /> : null}
+                {step === 2 ? (
+                  <StepChallenges register={register} errors={errors} watch={watch} setValue={setValue} />
+                ) : null}
+              </motion.div>
+            </AnimatePresence>
 
-            <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-6">
+            <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-6 dark:border-white/10">
               <Button type="button" variant="ghost" onClick={goBack} disabled={step === 0}>
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t.calc.buttons.back}
               </Button>
 
               {step < 2 ? (
                 <Button key="continue" type="button" variant="primary" onClick={goNext}>
-                  Continue
+                  {t.calc.buttons.continue}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               ) : (
-                <Button key="submit" type="submit" variant="accent" disabled={submitting}>
+                <Button key="submit" type="submit" variant="accent" disabled={submitting} className="shadow-glow">
                   {submitting ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      Calculating…
+                      {t.calc.buttons.calculating}
                     </>
                   ) : (
                     <>
-                      Calculate my ROI
+                      {t.calc.buttons.calculate}
                       <ArrowRight className="h-4 w-4" />
                     </>
                   )}

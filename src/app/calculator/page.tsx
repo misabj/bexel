@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 import { CalculatorWizard } from "@/components/calculator/CalculatorWizard";
+import { CalculatorHeader } from "@/components/calculator/CalculatorHeader";
 import type { Audience } from "@/types";
 
 export const metadata: Metadata = {
@@ -29,17 +30,9 @@ export default async function CalculatorPage({
   return (
     <>
       <Navbar />
-      <main className="bg-slate-50">
-        <div className="border-b border-slate-200 bg-white">
-          <div className="container-page py-12 text-center">
-            <h1 className="text-3xl font-extrabold tracking-tight text-brand-950 sm:text-4xl">
-              BIM ROI Calculator
-            </h1>
-            <p className="mx-auto mt-3 max-w-2xl text-slate-600">
-              Answer a few questions about your organization and a representative
-              project to receive an instant, personalized ROI estimate.
-            </p>
-          </div>
+      <main className="bg-slate-50 dark:bg-ink-900">
+        <div className="border-b border-slate-200 bg-white dark:border-white/5 dark:bg-ink-850">
+          <CalculatorHeader />
         </div>
         <div className="container-page py-12">
           <CalculatorWizard audience={audience} />

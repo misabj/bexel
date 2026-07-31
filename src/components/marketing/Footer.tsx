@@ -1,49 +1,51 @@
+"use client";
+
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { SITE } from "@/config/site";
+import { useT } from "@/i18n/provider";
 
 export function Footer() {
+  const t = useT();
   return (
-    <footer className="border-t border-slate-200 bg-brand-950 text-slate-300">
+    <footer className="border-t border-white/10 bg-brand-950 text-slate-300 dark:bg-ink-950">
       <div className="container-page grid gap-8 py-12 md:grid-cols-4">
         <div className="md:col-span-2">
           <Logo light />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
-            {SITE.tagline}. Estimate the value of integrated BIM planning, cost
-            control and collaboration for your organization.
+            {t.footer.tagline}
           </p>
         </div>
         <div>
-          <h4 className="mb-3 text-sm font-semibold text-white">Product</h4>
+          <h4 className="mb-3 text-sm font-semibold text-white">{t.footer.product}</h4>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/calculator" className="hover:text-accent-400">
-                ROI Calculator
+              <Link href="/calculator" className="transition hover:text-accent-400">
+                {t.footer.roiCalculator}
               </Link>
             </li>
             <li>
-              <Link href="/#benefits" className="hover:text-accent-400">
-                Benefits
+              <Link href="/#benefits" className="transition hover:text-accent-400">
+                {t.footer.benefits}
               </Link>
             </li>
             <li>
-              <Link href="/#how" className="hover:text-accent-400">
-                How it works
+              <Link href="/#how" className="transition hover:text-accent-400">
+                {t.footer.how}
               </Link>
             </li>
           </ul>
         </div>
         <div>
-          <h4 className="mb-3 text-sm font-semibold text-white">Company</h4>
+          <h4 className="mb-3 text-sm font-semibold text-white">{t.footer.company}</h4>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/#demo" className="hover:text-accent-400">
-                Request a Demo
+              <Link href="/#demo" className="transition hover:text-accent-400">
+                {t.footer.requestDemo}
               </Link>
             </li>
             <li>
-              <Link href="/admin" className="hover:text-accent-400">
-                Sales Admin
+              <Link href="/admin" className="transition hover:text-accent-400">
+                {t.footer.salesAdmin}
               </Link>
             </li>
           </ul>
@@ -51,8 +53,8 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-6 text-xs text-slate-500 sm:flex-row">
-          <p>© {new Date().getFullYear()} BEXEL Growth Platform — MVP concept.</p>
-          <p>An independent lead-automation concept for a BIM software company.</p>
+          <p>{t.footer.rights}</p>
+          <p>{t.footer.note}</p>
         </div>
       </div>
     </footer>

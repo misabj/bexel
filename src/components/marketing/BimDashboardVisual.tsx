@@ -25,7 +25,7 @@ export function BimDashboardVisual() {
         <div className="grid gap-4 p-5 sm:grid-cols-5">
           {/* Isometric building wireframe */}
           <div className="sm:col-span-3">
-            <div className="relative flex h-56 items-center justify-center rounded-xl bg-gradient-to-br from-brand-50 to-slate-100">
+            <div className="relative flex h-56 items-center justify-center rounded-xl bg-gradient-to-br from-brand-50 to-slate-100 dark:from-ink-700 dark:to-ink-800">
               <svg viewBox="0 0 220 200" className="h-52 w-52" role="img" aria-label="BIM building model">
                 <defs>
                   <linearGradient id="face-a" x1="0" x2="0" y1="0" y2="1">
@@ -63,7 +63,7 @@ export function BimDashboardVisual() {
                 <circle cx="150" cy="70" r="7" fill="#f97316" opacity="0.9" />
                 <circle cx="150" cy="70" r="12" fill="none" stroke="#f97316" strokeWidth="1.5" opacity="0.5" />
               </svg>
-              <span className="absolute bottom-3 left-3 rounded-md bg-white/80 px-2 py-1 text-[11px] font-medium text-brand-700">
+              <span className="absolute bottom-3 left-3 rounded-md bg-white/80 px-2 py-1 text-[11px] font-medium text-brand-700 dark:bg-ink-900/80 dark:text-slate-200">
                 4D / 5D model
               </span>
             </div>
@@ -78,23 +78,23 @@ export function BimDashboardVisual() {
         </div>
 
         {/* Progress / schedule bars */}
-        <div className="space-y-3 border-t border-slate-100 px-5 py-4">
+        <div className="space-y-3 border-t border-slate-100 px-5 py-4 dark:border-white/5">
           {[
             { label: "Structure", pct: 82 },
             { label: "MEP coordination", pct: 64 },
             { label: "Cost estimate", pct: 91 },
           ].map((row) => (
             <div key={row.label} className="flex items-center gap-3">
-              <span className="w-32 shrink-0 text-xs font-medium text-slate-500">
+              <span className="w-32 shrink-0 text-xs font-medium text-slate-500 dark:text-slate-400">
                 {row.label}
               </span>
-              <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
+              <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100 dark:bg-white/10">
                 <div
-                  className="h-full rounded-full bg-brand-600"
+                  className="h-full rounded-full bg-accent-gradient"
                   style={{ width: `${row.pct}%` }}
                 />
               </div>
-              <span className="w-9 text-right text-xs font-semibold text-brand-800">
+              <span className="w-9 text-right text-xs font-semibold text-brand-800 dark:text-slate-200">
                 {row.pct}%
               </span>
             </div>
@@ -103,9 +103,9 @@ export function BimDashboardVisual() {
       </div>
 
       {/* Floating savings badge */}
-      <div className="absolute -bottom-5 -left-4 hidden rounded-xl bg-white p-4 shadow-card-hover ring-1 ring-slate-100 sm:block">
-        <p className="text-xs font-medium text-slate-500">Est. annual savings</p>
-        <p className="text-2xl font-extrabold text-brand-900">€84,000</p>
+      <div className="absolute -bottom-5 -left-4 hidden rounded-xl bg-white p-4 shadow-card-hover ring-1 ring-slate-100 dark:bg-ink-800 dark:ring-white/10 sm:block animate-float">
+        <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Est. annual savings</p>
+        <p className="font-display text-2xl font-extrabold text-brand-900 dark:text-white">€84,000</p>
       </div>
     </div>
   );
@@ -128,12 +128,12 @@ function MiniKpi({
     accent: "text-accent-600 bg-accent-50",
   } as const;
   return (
-    <div className="rounded-xl border border-slate-100 bg-white p-3">
+    <div className="rounded-xl border border-slate-100 bg-white p-3 dark:border-white/10 dark:bg-ink-700">
       <span className={`inline-flex h-7 w-7 items-center justify-center rounded-lg ${tones[tone]}`}>
         {icon}
       </span>
-      <p className="mt-2 text-[11px] font-medium text-slate-500">{label}</p>
-      <p className="text-lg font-bold text-brand-900">{value}</p>
+      <p className="mt-2 text-[11px] font-medium text-slate-500 dark:text-slate-400">{label}</p>
+      <p className="text-lg font-bold text-brand-900 dark:text-white">{value}</p>
     </div>
   );
 }

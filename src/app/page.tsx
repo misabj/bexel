@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="bg-white dark:bg-ink-900">
         <Hero />
         <Benefits />
         <HowItWorks />
