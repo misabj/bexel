@@ -59,9 +59,9 @@ const config: Config = {
         card: "0 1px 3px rgba(15, 33, 64, 0.08), 0 8px 24px rgba(15, 33, 64, 0.06)",
         "card-hover":
           "0 2px 6px rgba(15, 33, 64, 0.10), 0 16px 40px rgba(15, 33, 64, 0.10)",
-        glow: "0 0 0 1px rgba(249,115,22,0.15), 0 8px 40px -8px rgba(249,115,22,0.45)",
+        glow: "0 0 0 1px rgba(249,115,22,0.12), 0 8px 18px -12px rgba(249,115,22,0.28)",
         "glow-spark":
-          "0 0 0 1px rgba(56,189,248,0.15), 0 8px 40px -8px rgba(56,189,248,0.45)",
+          "0 0 0 1px rgba(56,189,248,0.12), 0 8px 18px -12px rgba(56,189,248,0.28)",
         "inner-top": "inset 0 1px 0 0 rgba(255,255,255,0.06)",
       },
       backgroundImage: {

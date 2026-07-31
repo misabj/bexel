@@ -46,17 +46,17 @@ export default async function ReportPage({
   ];
 
   return (
-    <div className="min-h-screen bg-slate-100 py-8">
+    <div className="min-h-screen bg-slate-100 py-8 dark:bg-ink-900">
       <div className="print-container mx-auto max-w-3xl px-4">
         {/* Toolbar (hidden in print) */}
         <div className="no-print mb-6 flex items-center justify-between">
-          <a href="/" className="text-sm font-medium text-slate-500 hover:text-brand-700">
+          <a href="/" className="text-sm font-medium text-slate-500 hover:text-brand-700 dark:text-slate-400 dark:hover:text-accent-400">
             ← Back to site
           </a>
           <PrintButton />
         </div>
 
-        <div className="card space-y-8 p-8 sm:p-12">
+        <div className="card report-paper space-y-8 p-8 sm:p-12">
           {/* Cover / header */}
           <header className="flex items-center justify-between border-b border-slate-100 pb-6">
             <div className="flex items-center gap-3">
@@ -187,7 +187,9 @@ function Kpi({
   return (
     <div
       className={`rounded-xl border p-4 ${
-        highlight ? "border-brand-800 bg-brand-800 text-white" : "border-slate-200 bg-slate-50"
+        highlight
+          ? "border-brand-800 bg-brand-800 text-white"
+          : "border-slate-200 bg-slate-50"
       }`}
     >
       <p className={`text-xs font-medium ${highlight ? "text-brand-100" : "text-slate-500"}`}>

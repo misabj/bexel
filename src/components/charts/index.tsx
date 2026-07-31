@@ -42,7 +42,7 @@ export function SavingsBarChart({
 }) {
   return (
     <ResponsiveContainer width="100%" height={280}>
-      <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 28 }}>
+      <BarChart data={data} margin={{ top: 8, right: 12, left: 8, bottom: 28 }}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eef2f7" />
         <XAxis
           dataKey="label"
@@ -52,6 +52,7 @@ export function SavingsBarChart({
           textAnchor="end"
           height={64}
           tickMargin={8}
+          padding={{ left: 18, right: 18 }}
           tickFormatter={(v: string) => (v.length > 14 ? `${v.slice(0, 13)}…` : v)}
         />
         <YAxis tick={{ fontSize: 11, fill: "#64748b" }} tickFormatter={compact} />
@@ -140,7 +141,7 @@ export function CategoryBarChart<T extends Record<string, unknown>>({
 }) {
   return (
     <ResponsiveContainer width="100%" height={280}>
-      <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 28 }}>
+      <BarChart data={data} margin={{ top: 8, right: 12, left: 8, bottom: 28 }}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eef2f7" />
         <XAxis
           dataKey={xKey}
@@ -150,6 +151,7 @@ export function CategoryBarChart<T extends Record<string, unknown>>({
           textAnchor="end"
           height={64}
           tickMargin={8}
+          padding={{ left: 18, right: 18 }}
           tickFormatter={(v: string) => (v.length > 12 ? `${v.slice(0, 11)}…` : v)}
         />
         <YAxis allowDecimals={false} tick={{ fontSize: 11, fill: "#64748b" }} width={32} />

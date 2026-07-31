@@ -52,6 +52,13 @@
     @apply border-white/10 bg-ink-800/70 shadow-none;
   }
 
+  .report-paper {
+    @apply border-slate-200 bg-white text-brand-900 shadow-card;
+  }
+  .dark .report-paper {
+    @apply border-slate-200 bg-white text-brand-900 shadow-card;
+  }
+
   /* Frosted glass surface for hero/nav accents */
   .glass {
     @apply border border-white/60 bg-white/70 backdrop-blur-xl;
