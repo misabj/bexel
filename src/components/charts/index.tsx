@@ -41,13 +41,17 @@ export function SavingsBarChart({
   data: { label: string; amount: number }[];
 }) {
   return (
-    <ResponsiveContainer width="100%" height={260}>
-      <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 8 }}>
+    <ResponsiveContainer width="100%" height={280}>
+      <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 28 }}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eef2f7" />
         <XAxis
           dataKey="label"
           tick={{ fontSize: 11, fill: "#64748b" }}
           interval={0}
+          angle={-35}
+          textAnchor="end"
+          height={64}
+          tickMargin={8}
           tickFormatter={(v: string) => (v.length > 14 ? `${v.slice(0, 13)}…` : v)}
         />
         <YAxis tick={{ fontSize: 11, fill: "#64748b" }} tickFormatter={compact} />

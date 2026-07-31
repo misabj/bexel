@@ -52,10 +52,10 @@ export function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           <LanguageSwitcher />
           <ThemeToggle />
-          <Link href="/admin" className="hidden sm:block">
+          <Link href="/admin">
             <Button variant="ghost" size="sm">
               <LogIn className="h-4 w-4" />
-              {t.nav.login}
+              <span className="hidden sm:inline">{t.nav.login}</span>
             </Button>
           </Link>
           <Link href="/#demo" className="hidden lg:block">
