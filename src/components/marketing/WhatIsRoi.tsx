@@ -31,7 +31,7 @@ export function WhatIsRoi() {
   return (
     <section
       id="about"
-      className="border-b border-slate-200 bg-slate-50/70 dark:border-white/5 dark:bg-ink-950"
+      className="border-b border-slate-200 bg-slate-50 dark:border-white/5 dark:bg-ink-900"
     >
       <div className="container-page py-20 lg:py-24">
         <Reveal className="mx-auto max-w-2xl text-center">
