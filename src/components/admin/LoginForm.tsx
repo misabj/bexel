@@ -11,7 +11,6 @@ export function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
   const { toast } = useToast();
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -24,7 +23,7 @@ export function LoginForm() {
       const res = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ password }),
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (!res.ok || !data.ok) {
@@ -44,21 +43,12 @@ export function LoginForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4" noValidate>
-      <Field label="Email" htmlFor="email">
-        <Input
-          id="email"
-          type="email"
-          autoComplete="username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </Field>
       <Field label="Password" htmlFor="password">
         <Input
           id="password"
           type="password"
           autoComplete="current-password"
+          autoFocus
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

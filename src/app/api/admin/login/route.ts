@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { loginSchema } from "@/lib/validation/schemas";
-import { verifyCredentials, createSessionCookie } from "@/lib/auth";
+import { verifyPassword, createSessionCookie } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
@@ -30,14 +30,14 @@ export async function POST(request: Request) {
 
   const parsed = loginSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json({ ok: false, error: "Invalid credentials." }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "Invalid password." }, { status: 400 });
   }
 
-  const valid = await verifyCredentials(parsed.data.email, parsed.data.password);
+  const valid = verifyPassword(parsed.data.password);
   if (!valid) {
-    return NextResponse.json({ ok: false, error: "Invalid email or password." }, { status: 401 });
+    return NextResponse.json({ ok: false, error: "Incorrect password." }, { status: 401 });
   }
 
-  await createSessionCookie(parsed.data.email);
+  await createSessionCookie();
   return NextResponse.json({ ok: true });
 }

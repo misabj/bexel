@@ -134,7 +134,6 @@ export type ChallengesSchema = z.infer<typeof challengesSchema>;
 
 // ── Admin schemas ─────────────────────────────────────────────
 export const loginSchema = z.object({
-  email: z.string().email().max(160),
   password: z.string().min(1).max(200),
 });
 

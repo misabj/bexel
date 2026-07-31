@@ -18,16 +18,13 @@ export default function AdminLoginPage() {
         <div className="card p-8">
           <h1 className="text-xl font-bold text-brand-900">Sales Admin sign in</h1>
           <p className="mt-1 text-sm text-slate-500">
-            Access the BEXEL Growth lead dashboard.
+            Enter the admin password to access the BEXEL Growth lead dashboard.
           </p>
           <div className="mt-6">
             <Suspense fallback={<div className="h-64" />}>
               <LoginForm />
             </Suspense>
           </div>
-          <p className="mt-6 rounded-lg bg-slate-50 px-3 py-2 text-xs text-slate-500">
-            Demo credentials are provided in the project README.
-          </p>
         </div>
       </div>
     </div>

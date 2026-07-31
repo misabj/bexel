@@ -16,5 +16,5 @@ export default async function AdminLayout({
     return <div className="min-h-screen bg-slate-100">{children}</div>;
   }
 
-  return <AdminShell email={session.email}>{children}</AdminShell>;
+  return <AdminShell>{children}</AdminShell>;
 }

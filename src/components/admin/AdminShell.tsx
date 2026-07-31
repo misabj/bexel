@@ -14,10 +14,8 @@ const NAV = [
 ];
 
 export function AdminShell({
-  email,
   children,
 }: {
-  email: string;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
@@ -77,7 +75,7 @@ export function AdminShell({
             View public site
           </Link>
           <LogoutButton />
-          <p className="truncate px-3 pt-2 text-xs text-slate-400">{email}</p>
+          <p className="truncate px-3 pt-2 text-xs text-slate-400">Administrator</p>
         </div>
       </aside>
 

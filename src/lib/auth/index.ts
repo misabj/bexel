@@ -1,52 +1,47 @@
 import "server-only";
-import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { jwtVerify, SignJWT } from "jose";
 
 /**
- * Minimal, self-contained admin authentication.
+ * Minimal password-only admin authentication.
  *
- * A single administrator logs in with credentials stored as environment
- * variables (email + bcrypt password hash). On success we issue a signed,
- * httpOnly JWT session cookie. Route protection is enforced both in
- * middleware (fast, edge) and in server components (defence in depth).
+ * The administrator signs in with a single shared password. On success we
+ * issue a signed, httpOnly JWT session cookie. Route protection is enforced
+ * both in middleware (fast, edge) and in server components (defence in depth).
  */
 
 export const SESSION_COOKIE = "bexel_admin_session";
 const SESSION_MAX_AGE = 60 * 60 * 8; // 8 hours
 
+/** Shared admin password. Override with the ADMIN_PASSWORD env var if desired. */
+export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "adminbexel";
+
+/** Keeps sessions working even when AUTH_SECRET is not explicitly configured. */
+export const SESSION_SECRET =
+  process.env.AUTH_SECRET ?? "bexel-growth-admin-session-secret-2026";
+
 function getSecret(): Uint8Array {
-  const secret = process.env.AUTH_SECRET;
-  if (!secret || secret.length < 16) {
-    throw new Error("AUTH_SECRET is missing or too short (min 16 chars).");
-  }
-  return new TextEncoder().encode(secret);
+  return new TextEncoder().encode(SESSION_SECRET);
 }
 
 export interface AdminSession {
-  email: string;
   role: "admin";
 }
 
-/** Validate submitted credentials against the configured admin account. */
-export async function verifyCredentials(
-  email: string,
-  password: string,
-): Promise<boolean> {
-  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
-  const hash = process.env.ADMIN_PASSWORD_HASH;
-  if (!adminEmail || !hash) return false;
-  if (email.trim().toLowerCase() !== adminEmail) return false;
-  try {
-    return await bcrypt.compare(password, hash);
-  } catch {
-    return false;
+/** Constant-time comparison of the submitted password. */
+export function verifyPassword(password: string): boolean {
+  const expected = ADMIN_PASSWORD;
+  if (password.length !== expected.length) return false;
+  let mismatch = 0;
+  for (let i = 0; i < expected.length; i++) {
+    mismatch |= password.charCodeAt(i) ^ expected.charCodeAt(i);
   }
+  return mismatch === 0;
 }
 
-/** Sign a session token for the given admin email. */
-export async function signSession(email: string): Promise<string> {
-  return new SignJWT({ email, role: "admin" })
+/** Sign an admin session token. */
+export async function signSession(): Promise<string> {
+  return new SignJWT({ role: "admin" })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(`${SESSION_MAX_AGE}s`)
@@ -60,16 +55,16 @@ export async function verifySession(
   if (!token) return null;
   try {
     const { payload } = await jwtVerify(token, getSecret());
-    if (payload.role !== "admin" || typeof payload.email !== "string") return null;
-    return { email: payload.email, role: "admin" };
+    if (payload.role !== "admin") return null;
+    return { role: "admin" };
   } catch {
     return null;
   }
 }
 
 /** Create the session cookie (call from a route handler / server action). */
-export async function createSessionCookie(email: string): Promise<void> {
-  const token = await signSession(email);
+export async function createSessionCookie(): Promise<void> {
+  const token = await signSession();
   const store = await cookies();
   store.set(SESSION_COOKIE, token, {
     httpOnly: true,
@@ -91,9 +86,4 @@ export async function getAdminSession(): Promise<AdminSession | null> {
   const store = await cookies();
   const token = store.get(SESSION_COOKIE)?.value;
   return verifySession(token);
-}
-
-/** Hash a plaintext password (used by the CLI helper script). */
-export async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, 10);
 }
