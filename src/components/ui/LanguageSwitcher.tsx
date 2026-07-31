@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Check, ChevronDown, Globe } from "lucide-react";
 import { LOCALES, LOCALE_META, type Locale } from "@/i18n/config";
 import { useI18n } from "@/i18n/provider";
+import { FlagIcon } from "@/components/ui/FlagIcon";
 import { cn } from "@/lib/utils";
 
 export function LanguageSwitcher({ className }: { className?: string }) {
@@ -42,7 +43,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white/80 px-3 py-1.5 text-sm font-semibold text-brand-800 transition hover:border-brand-400 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/25"
       >
         <Globe className="h-4 w-4" />
-        <span className="text-base leading-none">{LOCALE_META[locale].flag}</span>
+        <FlagIcon locale={locale} />
         <ChevronDown
           className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")}
         />
@@ -70,7 +71,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
                       : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5",
                   )}
                 >
-                  <span className="text-base leading-none">{meta.flag}</span>
+                  <FlagIcon locale={code} />
                   <span className="flex-1">{meta.native}</span>
                   {active && <Check className="h-4 w-4 text-accent-500" />}
                 </button>
