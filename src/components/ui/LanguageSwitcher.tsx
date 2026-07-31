@@ -42,8 +42,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white/80 px-3 py-1.5 text-sm font-semibold text-brand-800 transition hover:border-brand-400 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/25"
       >
         <Globe className="h-4 w-4" />
-        <span className="hidden sm:inline">{LOCALE_META[locale].flag}</span>
-        <span className="uppercase">{locale}</span>
+        <span className="text-base leading-none">{LOCALE_META[locale].flag}</span>
         <ChevronDown
           className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")}
         />

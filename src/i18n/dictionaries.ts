@@ -1022,4 +1022,258 @@ const fr: Dictionary = {
   },
 };
 
-export const DICTIONARIES: Record<Locale, Dictionary> = { en, sr, de, fr };
+const sl: Dictionary = {
+  nav: {
+    benefits: "Prednosti",
+    how: "Kako deluje",
+    audience: "Za koga je",
+    demo: "Zahtevaj demo",
+    calculate: "Izračunaj ROI",
+  },
+  theme: { light: "Svetla", dark: "Temna", toggle: "Zamenjaj temo" },
+  language: "Jezik",
+  hero: {
+    badge: "BIM ROI Kalkulator",
+    titleA: "Izračunaj ROI",
+    titleB: "boljšega vodenja BIM projektov",
+    subtitle:
+      "Oceni, koliko časa, denarja in projektnega tveganja lahko tvoja organizacija zmanjša z integriranim BIM načrtovanjem, nadzorom stroškov in sodelovanjem.",
+    ctaPrimary: "Izračunaj ROI",
+    ctaSecondary: "Zahtevaj demo",
+    stats: {
+      time: "Čas",
+      timeV: "Manj ročnega poročanja",
+      cost: "Stroški",
+      costV: "Boljši nadzor proračuna",
+      risk: "Tveganje",
+      riskV: "Zgodnejše odkrivanje",
+    },
+    trusted: "Zanesljiv pristop, uporabljen pri komercialnih, infrastrukturnih in industrijskih projektih",
+  },
+  benefits: {
+    title: "Povezan BIM spremeni v merljive rezultate",
+    subtitle:
+      "Štiri področja, kjer integrirano BIM načrtovanje, nadzor stroškov in sodelovanje ustvarjajo oprijemljivo vrednost na vsakem projektu.",
+    items: {
+      delays: {
+        title: "Zmanjšaj zamude projekta",
+        description:
+          "Simuliraj urnike s 4D načrtovanjem in ujemi ozka grla, preden zadenejo kritično pot.",
+      },
+      cost: {
+        title: "Izboljšaj preglednost stroškov",
+        description:
+          "Poveži 5D stroškovne podatke z modelom, tako da se vsaka sprememba ovrednoti takoj, ko se zgodi.",
+      },
+      reporting: {
+        title: "Avtomatiziraj poročanje",
+        description:
+          "Zamenjaj ročne tabele z živimi KPI-ji iz modela in poročili z enim klikom.",
+      },
+      risk: {
+        title: "Odkrij tveganja prej",
+        description:
+          "Samodejno razkrij kolizije, vrzeli v podatkih in tveganja urnika, dolgo preden se stopnjujejo.",
+      },
+    },
+  },
+  how: {
+    title: "Od vprašanj do jasnega ROI v nekaj minutah",
+    subtitle: "Trije preprosti koraki do pregledne, prilagojene ocene.",
+    steps: {
+      s1: {
+        title: "Vnesi podatke o projektu",
+        description:
+          "Povej nam o svoji organizaciji, reprezentativnem projektu in trenutnih izzivih.",
+      },
+      s2: {
+        title: "Prejmi prilagojeno ROI oceno",
+        description:
+          "Pridobi takojšen, pregleden razčlenjen prikaz prihrankov, neto koristi in dobe povračila.",
+      },
+      s3: {
+        title: "Preglej rezultate s strokovnjakom za BIM",
+        description:
+          "Rezerviraj demo, da preveriš številke glede na svoje resnične procese in portfelj projektov.",
+      },
+    },
+  },
+  audience: {
+    title: "Ustvarjeno za vsako vlogo na projektu",
+    subtitle:
+      "Izberi svojo vlogo in poglej, kako ROI kalkulator nagovarja tvoje prioritete.",
+    startAs: "Zaženi kalkulator kot",
+    roles: {
+      INVESTORS: "Investitorji",
+      CONTRACTORS: "Izvajalci",
+      BIM_MANAGERS: "BIM vodje",
+      PROJECT_MANAGERS: "Vodje projektov",
+      COST_MANAGERS: "Vodje stroškov",
+    },
+    helpers: {
+      INVESTORS:
+        "Ovrednoti, kako tesnejši nadzor stroškov in manj zamud ščitita tvoj donos kapitala.",
+      CONTRACTORS:
+        "Poglej, kako povezano 4D/5D načrtovanje zmanjša predelave in ohranja gradbišča v roku.",
+      BIM_MANAGERS:
+        "Oceni produktivnost, pridobljeno iz enotnega, usklajenega BIM okolja.",
+      PROJECT_MANAGERS:
+        "Razumi, koliko časa se povrne od ročnega poročanja in iskanja informacij.",
+      COST_MANAGERS:
+        "Modeliraj vpliv zgodnjega odkrivanja tveganj in zmanjšanja zahtev za spremembe na proračun.",
+    },
+  },
+  demo: {
+    title: "Najprej svoje številke, nato platforma",
+    subtitle:
+      "Zaženi ROI kalkulator za prilagojeno oceno, nato rezerviraj demo s strokovnjakom za BIM, da jo preveriš na svojih resničnih projektih.",
+    ctaPrimary: "Izračunaj ROI",
+    ctaSecondary: "Zahtevaj demo",
+  },
+  footer: {
+    tagline:
+      "BIM ROI Kalkulator in avtomatizacija potencialnih strank. Oceni vrednost integriranega BIM načrtovanja, nadzora stroškov in sodelovanja za tvojo organizacijo.",
+    product: "Izdelek",
+    company: "Podjetje",
+    roiCalculator: "ROI Kalkulator",
+    benefits: "Prednosti",
+    how: "Kako deluje",
+    requestDemo: "Zahtevaj demo",
+    salesAdmin: "Prodajni admin",
+    rights: "© 2026 BEXEL Growth Platform — MVP koncept.",
+    note: "Neodvisen koncept avtomatizacije potencialnih strank za podjetje z BIM programsko opremo.",
+  },
+  calc: {
+    title: "BIM ROI Kalkulator",
+    subtitle:
+      "Odgovori na nekaj vprašanj o svoji organizaciji in reprezentativnem projektu ter prejmi takojšnjo, prilagojeno ROI oceno.",
+    steps: {
+      contact: "Stik",
+      project: "Projekt",
+      challenges: "Izzivi",
+      results: "Rezultati",
+    },
+    optional: "Neobvezno",
+    contact: {
+      title: "Kontaktni podatki",
+      subtitle: "Povej nam, kdo si, da lahko delimo tvoje prilagojene rezultate.",
+      firstName: "Ime",
+      lastName: "Priimek",
+      email: "Poslovni e-poštni naslov",
+      company: "Podjetje",
+      jobTitle: "Delovno mesto",
+      phone: "Telefon",
+      country: "Država",
+      companySize: "Velikost podjetja",
+      employees: "zaposlenih",
+    },
+    project: {
+      title: "Podatki o projektu",
+      subtitle: "Opiši reprezentativen projekt. To poganja ROI oceno.",
+      projectName: "Ime projekta",
+      projectType: "Vrsta projekta",
+      projectValue: "Ocenjena vrednost projekta",
+      currency: "Valuta",
+      duration: "Pričakovano trajanje (meseci)",
+      teamSize: "Člani projektne ekipe",
+      activeProjects: "Število aktivnih projektov",
+      bimMaturity: "Trenutna BIM zrelost",
+      fxNote: "Menjalni tečaji so statične predstavitvene vrednosti in ne aktualni tržni tečaji.",
+    },
+    challenges: {
+      title: "Trenutni izzivi",
+      subtitle: "Ovrednoti današnje težave, da ocenimo izboljšave.",
+      reportingHours: "Mesečne ure za ročno poročanje",
+      searchHours: "Mesečne ure za iskanje informacij",
+      weeklyDelay: "Strošek enega tedna zamude",
+      delayWeeks: "Pričakovano število tednov zamude",
+      changeReqs: "Letno število zahtev za spremembe",
+      changeCost: "Povprečni strošek na zahtevo za spremembo",
+      duplicated: "Podvojeno / nepotrebno delo",
+      problems: "Katere težave imaš danes?",
+    },
+    buttons: {
+      back: "Nazaj",
+      continue: "Naprej",
+      calculate: "Izračunaj moj ROI",
+      calculating: "Računam…",
+    },
+    toast: {
+      fix: "Prosimo, izpolni označena polja.",
+      ready: "Tvoja ROI ocena je pripravljena.",
+      network: "Napaka omrežja. Poskusi znova.",
+      error: "Nekaj je šlo narobe. Poskusi znova.",
+    },
+    results: {
+      badge: "Ocena zaključena",
+      title: "Tvoj ocenjeni BIM ROI",
+      forCompany: "Okvirni rezultati za",
+      totalSavings: "Skupni potencialni prihranki",
+      perYear: "Letno",
+      roi: "ROI",
+      roiSub: "Donos naložbe",
+      payback: "Doba povračila",
+      paybackSub: "Čas do povračila",
+      netBenefit: "Neto korist",
+      netSub: "Po naložbi v programsko opremo",
+      timeSavings: "Prihranek časa",
+      hoursYear: "h / leto",
+      months: "mesecev",
+      leadScore: "Ocena kvalifikacije stranke",
+      summary:
+        "Na podlagi vnesenih podatkov lahko tvoja organizacija prihrani spodaj prikazane zneske z zmanjšanjem ročnega poročanja, zamud in predelav.",
+      reporting: "Prihranki pri poročanju",
+      delay: "Preprečeni stroški zamud",
+      rework: "Zmanjšanje predelav",
+      byCategory: "Prihranki po kategorijah",
+      distribution: "Porazdelitev prihrankov",
+      howCalculated: "Kako so izračunane številke",
+      saving: "Prihranek",
+      basis: "Osnova",
+      amountYear: "Znesek / leto",
+      investment: "Ocenjena letna naložba v programsko opremo",
+      requestDemo: "Zahtevaj prilagojen demo",
+      viewReport: "Poglej poročilo za tisk",
+      disclaimer:
+        "Ta kalkulator daje le okvirno oceno. Dejanski rezultati so odvisni od obsega projekta, kakovosti izvedbe, sprejemanja uporabnikov in obstoječih procesov. Uporabljeni menjalni tečaji so statične predstavitvene vrednosti.",
+    },
+  },
+  enums: {
+    companySize: {
+      SIZE_1_10: "1–10",
+      SIZE_11_50: "11–50",
+      SIZE_51_200: "51–200",
+      SIZE_201_500: "201–500",
+      SIZE_500_PLUS: "500+",
+    },
+    projectType: {
+      RESIDENTIAL: "Stanovanjski",
+      COMMERCIAL: "Komercialni",
+      INFRASTRUCTURE: "Infrastruktura",
+      INDUSTRIAL: "Industrijski",
+      HEALTHCARE: "Zdravstvo",
+      EDUCATION: "Izobraževanje",
+      OTHER: "Drugo",
+    },
+    bimMaturity: {
+      NONE: "Brez formalnega BIM procesa",
+      BASIC_3D: "Osnovni 3D BIM",
+      COORDINATED: "Usklajen BIM",
+      PLANNING_4D: "4D načrtovanje",
+      COST_5D: "5D upravljanje stroškov",
+      INTEGRATED: "Integrirano BIM okolje",
+    },
+    challenge: {
+      DISCONNECTED_DATA: "Nepovezani podatki projekta",
+      MANUAL_REPORTING: "Ročno poročanje",
+      POOR_COST_VISIBILITY: "Slaba preglednost stroškov",
+      SCHEDULE_DELAYS: "Zamude urnika",
+      DIFFICULT_COLLABORATION: "Oteženo sodelovanje deležnikov",
+      LATE_RISK_DETECTION: "Pozno odkrivanje tveganj",
+      TOO_MANY_EXCEL: "Preveč Excel datotek",
+      LIMITED_FIELD_COMMS: "Omejena komunikacija teren–pisarna",
+    },
+  },
+};
+
+export const DICTIONARIES: Record<Locale, Dictionary> = { en, sr, sl, de, fr };
