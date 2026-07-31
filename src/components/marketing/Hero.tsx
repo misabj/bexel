@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, CalendarCheck, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useT } from "@/i18n/provider";
 import { BimDashboardVisual } from "./BimDashboardVisual";
@@ -48,23 +48,12 @@ export function Hero() {
 
       <div className="container-page relative grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
         <div>
-          <motion.span
-            custom={0}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-accent-500" />
-            {t.hero.badge}
-          </motion.span>
-
           <motion.h1
             custom={1}
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="mt-6 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-950 dark:text-white sm:text-5xl xl:text-6xl"
+            className="font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-950 dark:text-white sm:text-5xl xl:text-6xl"
           >
             {t.hero.titleA}{" "}
             <span className="text-gradient">{t.hero.titleB}</span>

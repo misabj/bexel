@@ -32,6 +32,27 @@ const en = {
     },
     trusted: "Trusted approach used across commercial, infrastructure & industrial projects",
   },
+  intro: {
+    title: "Understand your numbers, in plain language",
+    subtitle:
+      "A short guide to what this tool measures and how to read your results — no BIM jargon required.",
+    roi: {
+      title: "What does ROI mean?",
+      term: "ROI = Return on Investment",
+      text:
+        "ROI shows how much value you get back for every euro you invest. A 200% ROI means that for each €1 you spend you gain €2 in return — the higher the number, the faster the investment pays for itself.",
+    },
+    app: {
+      title: "What does this app do?",
+      text:
+        "The BEXEL ROI Calculator estimates how much time, money and project risk your organization could save by working with connected BIM instead of scattered spreadsheets and disconnected tools.",
+    },
+    usage: {
+      title: "How to use it",
+      text:
+        "Answer a few short questions about your company, a typical project and your current challenges. In under two minutes you get a clear, personalized estimate of your potential savings, payback period and return on investment.",
+    },
+  },
   benefits: {
     title: "Turn connected BIM into measurable outcomes",
     subtitle:
@@ -288,6 +309,27 @@ const sr: Dictionary = {
     },
     trusted: "Pouzdan pristup primenjen na komercijalnim, infrastrukturnim i industrijskim projektima",
   },
+  intro: {
+    title: "Razumi svoje brojke, jednostavnim jezikom",
+    subtitle:
+      "Kratak vodič kroz to šta ovaj alat meri i kako da pročitaš svoje rezultate — bez BIM žargona.",
+    roi: {
+      title: "Šta znači ROI?",
+      term: "ROI = povraćaj investicije",
+      text:
+        "ROI pokazuje koliko vrednosti dobiješ za svaki uloženi evro. ROI od 200% znači da za svaki uloženi 1€ dobijaš 2€ nazad — što je broj veći, investicija se brže isplati.",
+    },
+    app: {
+      title: "Šta radi ova aplikacija?",
+      text:
+        "BEXEL ROI Kalkulator procenjuje koliko vremena, novca i projektnog rizika tvoja organizacija može da uštedi radeći sa povezanim BIM-om umesto sa razbacanim tabelama i nepovezanim alatima.",
+    },
+    usage: {
+      title: "Kako se koristi",
+      text:
+        "Odgovori na par kratkih pitanja o svojoj kompaniji, tipičnom projektu i trenutnim izazovima. Za manje od dva minuta dobijaš jasnu, personalizovanu procenu mogućih ušteda, perioda povraćaja i povraćaja investicije.",
+    },
+  },
   benefits: {
     title: "Pretvori povezan BIM u merljive rezultate",
     subtitle:
@@ -541,6 +583,27 @@ const de: Dictionary = {
       riskV: "Früheres Erkennen",
     },
     trusted: "Bewährter Ansatz für Gewerbe-, Infrastruktur- und Industrieprojekte",
+  },
+  intro: {
+    title: "Verstehen Sie Ihre Zahlen — in einfacher Sprache",
+    subtitle:
+      "Ein kurzer Leitfaden dazu, was dieses Tool misst und wie Sie Ihre Ergebnisse lesen — ohne BIM-Fachjargon.",
+    roi: {
+      title: "Was bedeutet ROI?",
+      term: "ROI = Return on Investment (Kapitalrendite)",
+      text:
+        "Der ROI zeigt, wie viel Wert Sie für jeden investierten Euro zurückerhalten. Ein ROI von 200 % bedeutet, dass Sie für jeden ausgegebenen 1 € 2 € zurückbekommen — je höher die Zahl, desto schneller amortisiert sich die Investition.",
+    },
+    app: {
+      title: "Was macht diese App?",
+      text:
+        "Der BEXEL ROI-Rechner schätzt, wie viel Zeit, Geld und Projektrisiko Ihr Unternehmen durch vernetztes BIM einsparen kann — statt durch verstreute Tabellen und getrennte Werkzeuge.",
+    },
+    usage: {
+      title: "So verwenden Sie es",
+      text:
+        "Beantworten Sie einige kurze Fragen zu Ihrem Unternehmen, einem typischen Projekt und Ihren aktuellen Herausforderungen. In weniger als zwei Minuten erhalten Sie eine klare, personalisierte Schätzung Ihrer möglichen Einsparungen, Amortisationszeit und Kapitalrendite.",
+    },
   },
   benefits: {
     title: "Machen Sie vernetztes BIM messbar",
@@ -796,6 +859,27 @@ const fr: Dictionary = {
     },
     trusted: "Approche éprouvée sur des projets commerciaux, d'infrastructure et industriels",
   },
+  intro: {
+    title: "Comprenez vos chiffres, en langage simple",
+    subtitle:
+      "Un petit guide de ce que cet outil mesure et de la façon de lire vos résultats — sans jargon BIM.",
+    roi: {
+      title: "Que signifie ROI ?",
+      term: "ROI = retour sur investissement",
+      text:
+        "Le ROI indique la valeur que vous récupérez pour chaque euro investi. Un ROI de 200 % signifie que pour chaque 1 € dépensé vous gagnez 2 € en retour — plus le chiffre est élevé, plus l'investissement se rentabilise vite.",
+    },
+    app: {
+      title: "Que fait cette application ?",
+      text:
+        "Le calculateur ROI BEXEL estime le temps, l'argent et le risque projet que votre organisation pourrait économiser en travaillant avec un BIM connecté, plutôt qu'avec des tableurs dispersés et des outils déconnectés.",
+    },
+    usage: {
+      title: "Comment l'utiliser",
+      text:
+        "Répondez à quelques questions courtes sur votre entreprise, un projet type et vos défis actuels. En moins de deux minutes, vous obtenez une estimation claire et personnalisée de vos économies potentielles, de votre délai de rentabilité et de votre retour sur investissement.",
+    },
+  },
   benefits: {
     title: "Transformez le BIM connecté en résultats mesurables",
     subtitle:
@@ -1049,6 +1133,27 @@ const sl: Dictionary = {
       riskV: "Zgodnejše odkrivanje",
     },
     trusted: "Zanesljiv pristop, uporabljen pri komercialnih, infrastrukturnih in industrijskih projektih",
+  },
+  intro: {
+    title: "Razumi svoje številke, v preprostem jeziku",
+    subtitle:
+      "Kratek vodnik po tem, kaj to orodje meri in kako brati rezultate — brez BIM žargona.",
+    roi: {
+      title: "Kaj pomeni ROI?",
+      term: "ROI = donos naložbe",
+      text:
+        "ROI pokaže, koliko vrednosti dobiš za vsak vloženi evro. ROI 200 % pomeni, da za vsak vloženi 1 € dobiš 2 € nazaj — višja kot je številka, hitreje se naložba povrne.",
+    },
+    app: {
+      title: "Kaj počne ta aplikacija?",
+      text:
+        "BEXEL ROI Kalkulator oceni, koliko časa, denarja in projektnega tveganja lahko tvoja organizacija prihrani z delom s povezanim BIM-om namesto z razpršenimi tabelami in nepovezanimi orodji.",
+    },
+    usage: {
+      title: "Kako ga uporabljati",
+      text:
+        "Odgovori na nekaj kratkih vprašanj o svojem podjetju, tipičnem projektu in trenutnih izzivih. V manj kot dveh minutah dobiš jasno, prilagojeno oceno možnih prihrankov, dobe povračila in donosa naložbe.",
+    },
   },
   benefits: {
     title: "Povezan BIM spremeni v merljive rezultate",

@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 import { Hero } from "@/components/marketing/Hero";
+import { WhatIsRoi } from "@/components/marketing/WhatIsRoi";
 import { Benefits } from "@/components/marketing/Benefits";
 import { HowItWorks } from "@/components/marketing/HowItWorks";
 import { Audience } from "@/components/marketing/Audience";
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Navbar />
       <main className="bg-white dark:bg-ink-900">
         <Hero />
+        <WhatIsRoi />
         <Benefits />
         <HowItWorks />
         <Audience />
