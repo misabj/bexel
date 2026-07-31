@@ -107,6 +107,10 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
   };
 
   const onSubmit = handleSubmit(async (values) => {
+    // Guard: only the final "Challenges" step may submit. Prevents an
+    // accidental submit when the Continue button is swapped for the submit
+    // button on the same click (React reuses the DOM node otherwise).
+    if (step !== 2) return;
     setSubmitting(true);
     try {
       const res = await fetch("/api/assessment", {
@@ -183,12 +187,12 @@ export function CalculatorWizard({ audience }: { audience?: Audience }) {
               </Button>
 
               {step < 2 ? (
-                <Button type="button" variant="primary" onClick={goNext}>
+                <Button key="continue" type="button" variant="primary" onClick={goNext}>
                   Continue
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               ) : (
-                <Button type="submit" variant="accent" disabled={submitting}>
+                <Button key="submit" type="submit" variant="accent" disabled={submitting}>
                   {submitting ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />
