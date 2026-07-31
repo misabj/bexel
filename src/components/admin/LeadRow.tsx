@@ -8,6 +8,7 @@ import { StatusBadge, TemperatureBadge } from "@/components/ui/Badge";
 import { formatCurrency } from "@/lib/currency";
 import { formatDate } from "@/lib/utils";
 import { useToast } from "@/components/ui/Toast";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import type { LeadListItem } from "@/lib/leads/queries";
 import type { Currency } from "@/types";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -18,20 +19,25 @@ export function LeadRow({ lead, l }: { lead: LeadListItem; l: LeadsLabels }) {
   const router = useRouter();
   const { toast } = useToast();
   const [deleting, setDeleting] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   function openLead() {
     router.push(`/admin/leads/${lead.id}`);
   }
 
-  async function handleDelete(e: React.MouseEvent) {
+  function requestDelete(e: React.MouseEvent) {
     e.stopPropagation();
-    if (!window.confirm(l.deleteConfirm)) return;
+    setConfirmOpen(true);
+  }
+
+  async function confirmDelete() {
     setDeleting(true);
     try {
       const res = await fetch(`/api/leads/${lead.id}`, { method: "DELETE" });
       const data = await res.json().catch(() => ({ ok: false }));
       if (!res.ok || !data.ok) throw new Error();
       toast(l.deleted, "success");
+      setConfirmOpen(false);
       router.refresh();
     } catch {
       toast(l.deleteError, "error");
@@ -69,7 +75,7 @@ export function LeadRow({ lead, l }: { lead: LeadListItem; l: LeadsLabels }) {
           </Link>
           <button
             type="button"
-            onClick={handleDelete}
+            onClick={requestDelete}
             disabled={deleting}
             aria-label={l.delete}
             title={l.delete}
@@ -83,6 +89,16 @@ export function LeadRow({ lead, l }: { lead: LeadListItem; l: LeadsLabels }) {
           </button>
         </div>
       </td>
+      <ConfirmDialog
+        open={confirmOpen}
+        title={l.deleteTitle}
+        message={l.deleteConfirm}
+        confirmLabel={l.delete}
+        cancelLabel={l.cancel}
+        loading={deleting}
+        onConfirm={confirmDelete}
+        onCancel={() => setConfirmOpen(false)}
+      />
     </tr>
   );
 }
