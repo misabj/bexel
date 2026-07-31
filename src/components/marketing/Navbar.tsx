@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { LogIn } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -51,6 +52,12 @@ export function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           <LanguageSwitcher />
           <ThemeToggle />
+          <Link href="/admin" className="hidden sm:block">
+            <Button variant="ghost" size="sm">
+              <LogIn className="h-4 w-4" />
+              {t.nav.login}
+            </Button>
+          </Link>
           <Link href="/#demo" className="hidden lg:block">
             <Button variant="ghost" size="sm">
               {t.nav.demo}
