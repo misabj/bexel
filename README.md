@@ -1,5 +1,7 @@
 # BEXEL Growth Platform — BIM ROI Calculator & Lead Automation
 
+
+--sad nas ima vise na projektu
 A production-grade MVP web application that turns anonymous website visitors into
 qualified, scored sales leads. A prospect fills an interactive **BIM ROI
 calculator**, instantly receives a personalized savings estimate and a
